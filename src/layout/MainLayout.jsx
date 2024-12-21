@@ -3,11 +3,11 @@ import Footer from "./../components/Footer";
 import Navbar from "./../components/Navbar";
 const MainLayout = () => {
   return (
-    <div>
+    <div className="font-Poppins ">
       {/* navbar */}
       <Navbar />
 
-      <div>
+      <div className="h-[20000px]">
         {/* dynamic */}
         <Outlet />
       </div>
