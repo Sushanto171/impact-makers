@@ -1,3 +1,5 @@
+import UpdateModal from "./UpdateModal";
+
 const MyVolunteerNeedPost = () => {
   return (
     <div>
@@ -49,14 +51,12 @@ const MyVolunteerNeedPost = () => {
                 </span>
               </td>
               <td>Purple</td>
-              <th>
+              <td>
                 <div className="flex justify-between">
-                  <button className="btn btn-ghost btn-xs text-error">
-                    Delete
-                  </button>
-                  <button className="btn btn-ghost btn-xs">Edit</button>
+                  <button className="btn btn-error btn-xs">Delete</button>
+                  <UpdateModal />
                 </div>
-              </th>
+              </td>
             </tr>
           </tbody>
         </table>
