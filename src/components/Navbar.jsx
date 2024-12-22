@@ -1,3 +1,4 @@
+import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -24,7 +25,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="sticky top-0 navbar justify-between text-[#ffdaa3]  bg-[#004a61] py-5 shadow-sm px:5  sm:px-10 md:px-14">
+    <nav className="sticky z-50 top-0 navbar justify-between text-[#ffdaa3]  bg-[#004a61] py-5 shadow-sm px:5  sm:px-10 md:px-14">
       <div className="">
         <Link to={"/"} className="btn btn-ghost text-xl font-bold">
           Impact Makers
@@ -34,7 +35,12 @@ const Navbar = () => {
         {links}
         <li className="dropdown dropdown-center">
           <div tabIndex={0} role="button">
-            My Profile
+            <div className="flex items-center">
+              <span>My Profile</span>
+              <span>
+                <IoMdArrowDropdown />
+              </span>
+            </div>
           </div>
           <ul
             tabIndex={0}
@@ -73,10 +79,14 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <button className="btn btn-sm btn-outline text-[#ffdaa3]">
-                Register
-              </button>
-              <button className="btn btn-sm ">Login</button>
+              <Link to="/register">
+                <button className="btn btn-sm btn-outline text-[#ffdaa3]">
+                  Register
+                </button>
+              </Link>
+              <Link to="/log-in">
+                <button className="btn btn-sm ">Login</button>
+              </Link>
             </>
           )}
         </div>

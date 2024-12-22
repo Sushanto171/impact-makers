@@ -7,7 +7,7 @@ const MainLayout = () => {
       {/* navbar */}
       <Navbar />
 
-      <div className="h-[20000px]">
+      <div className="">
         {/* dynamic */}
         <Outlet />
       </div>
