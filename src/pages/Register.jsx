@@ -24,8 +24,8 @@ const Register = () => {
     console.log({ displayName, email, photoURL, password });
   };
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-100px)]">
-      <div className="max-w-sm mx-auto w-full bg-base-200 sm:max-w-md p-10 rounded-box shadow">
+    <div className="flex justify-center items-center ">
+      <div className="max-w-sm mx-auto w-full sm:max-w-md p-10 rounded-box shadow bg-base-200">
         <form onSubmit={registerHandle}>
           <div className="text-center font-bold text-2xl mb-8">
             <h3>Register Now</h3>
