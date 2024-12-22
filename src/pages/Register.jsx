@@ -1,8 +1,10 @@
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import LoginWithGoogle from "../components/LoginWithGoogle";
+import useDynamicTitle from "./../hooks/useDynamicTitle";
 
 const Register = () => {
+  useDynamicTitle("Register");
   const registerHandle = (e) => {
     e.preventDefault();
     const formData = e.target;

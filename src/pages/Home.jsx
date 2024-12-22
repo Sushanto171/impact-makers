@@ -1,7 +1,9 @@
 import Banner from "../components/Banner";
 import VolunteerNeedNow from "../components/VolunteerNeedNow";
 
+import useDynamicTitle from "./../hooks/useDynamicTitle";
 const Home = () => {
+  useDynamicTitle("Home");
   return (
     <div className="-mt-10 ">
       <div className="flex">

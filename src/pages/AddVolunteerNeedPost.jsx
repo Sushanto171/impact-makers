@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { SiLibreofficewriter } from "react-icons/si";
+import useDynamicTitle from "./../hooks/useDynamicTitle";
 const AddVolunteerNeedPost = () => {
   const [startDate, setStartDate] = useState(new Date());
+  useDynamicTitle("Add Volunteer Post");
 
   const handleForm = (e) => {
     e.preventDefault();

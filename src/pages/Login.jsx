@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import LoginWithGoogle from "../components/LoginWithGoogle";
+import useDynamicTitle from "../hooks/useDynamicTitle";
 
 const Login = () => {
+  useDynamicTitle("Log in");
+
   const handleLogin = (e) => {
     e.preventDefault();
     const formData = e.target;

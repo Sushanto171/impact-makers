@@ -21,7 +21,7 @@ const UpdateModal = () => {
   return (
     <>
       <button
-        className="btn btn-xs"
+        className="btn btn-xs bg-[#ffdaa3]"
         onClick={() => document.getElementById("my_modal_4").showModal()}
       >
         Update

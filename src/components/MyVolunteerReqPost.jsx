@@ -1,4 +1,6 @@
+import useDynamicTitle from "./../hooks/useDynamicTitle";
 const MyVolunteerReqPost = () => {
+  useDynamicTitle("My Volunteer Request Post");
   return (
     <div>
       <div className="overflow-x-auto">

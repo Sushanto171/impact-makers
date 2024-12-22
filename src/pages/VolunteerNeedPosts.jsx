@@ -3,7 +3,9 @@ import { CgLayoutList } from "react-icons/cg";
 import { RiLayoutGrid2Fill } from "react-icons/ri";
 import VolunteerNeedsPostsCard from "../components/VolunteerNeedsPostsCard";
 
+import useDynamicTitle from "./../hooks/useDynamicTitle";
 const VolunteerNeedPosts = () => {
+  useDynamicTitle("All Volunteer Needs Posts");
   const [controlLayout, setControlLayout] = useState("grid");
   return (
     <div className="mx-auto md:w-10/12">
