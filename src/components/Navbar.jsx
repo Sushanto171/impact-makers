@@ -9,17 +9,17 @@ const Navbar = () => {
         <Link to={"/"}>Home</Link>
       </li>
       <li>
-        <Link to={"/"}>All Volunteer Need Posts</Link>
+        <Link to={"/volunteer-need-post"}>All Volunteer Need Posts</Link>
       </li>
     </>
   );
   const links2 = (
     <>
       <li>
-        <Link>Add Volunteer need Post</Link>
+        <Link to="/add-post">Add Volunteer need Post</Link>
       </li>
       <li>
-        <Link>Manage My Posts </Link>
+        <Link to="/my-posts">Manage My Posts </Link>
       </li>
     </>
   );
@@ -44,7 +44,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-8 bg-[#004a61b9] rounded-md z-[1]  w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content mt-9 bg-[#004a61b9] rounded-md z-[1]  w-64 p-2 shadow"
           >
             {links2}
           </ul>
@@ -85,7 +85,9 @@ const Navbar = () => {
                 </button>
               </Link>
               <Link to="/log-in">
-                <button className="btn btn-sm ">Login</button>
+                <button className="btn btn-sm bg-[#ffdaa3] hover:bg-[#1F2937] hover:text-white">
+                  Login
+                </button>
               </Link>
             </>
           )}

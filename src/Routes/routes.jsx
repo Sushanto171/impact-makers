@@ -1,9 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
+import AddVolunteerNeedPost from "../pages/AddVolunteerNeedPost";
 import Error from "../pages/Error";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import ManageMyPosts from "../pages/ManageMyPosts";
 import Register from "../pages/Register";
+import VolunteerNeedPosts from "../pages/VolunteerNeedPosts";
+import PrivateRoute from "./PrivateRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -22,6 +26,30 @@ export const routes = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/volunteer-need-post",
+        element: (
+          <PrivateRoute>
+            <VolunteerNeedPosts />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/add-post",
+        element: (
+          <PrivateRoute>
+            <AddVolunteerNeedPost />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-posts",
+        element: (
+          <PrivateRoute>
+            <ManageMyPosts />
+          </PrivateRoute>
+        ),
       },
     ],
   },
