@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import DetailsPost from "../components/DetailsPost";
 import MainLayout from "../layout/MainLayout";
 import AddVolunteerNeedPost from "../pages/AddVolunteerNeedPost";
 import Error from "../pages/Error";
@@ -48,6 +49,14 @@ export const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ManageMyPosts />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/post-details/:id",
+        element: (
+          <PrivateRoute>
+            <DetailsPost />
           </PrivateRoute>
         ),
       },

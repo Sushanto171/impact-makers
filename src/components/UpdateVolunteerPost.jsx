@@ -5,7 +5,7 @@ const UpdateVolunteerPost = () => {
   const [startDate, setStartDate] = useState(new Date());
   return (
     <div className="flex flex-col items-center">
-      <h3 className="text-2xl md:text-4xl">Add Volunteer Need Post</h3>
+      <h3 className="text-2xl md:text-4xl">Update Volunteer Need Post</h3>
       <div className="w-full max-w-lg mx-auto mt-10">
         <form>
           <div className="bg-base-200 w-full p-10 grid grid-cols-2 gap-4 rounded-md shadow">
