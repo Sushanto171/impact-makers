@@ -1,17 +1,34 @@
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import LoginWithGoogle from "../components/LoginWithGoogle";
+import useAuth from "../hooks/useAuth";
 import useDynamicTitle from "../hooks/useDynamicTitle";
 
 const Login = () => {
+  const { state } = useLocation();
+  const { logInUser, user } = useAuth();
+
   useDynamicTitle("Log in");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     const formData = e.target;
     const email = formData.email.value;
     const password = formData.password.value;
-    console.log(email, password);
+
+    try {
+      await logInUser(email, password);
+      toast.success("Log in success");
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
+  if (user)
+    return (
+      <>
+        <Navigate to="/" />
+      </>
+    );
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-100px)]">
       <div className="max-w-sm mx-auto w-full bg-base-200 sm:max-w-md p-10 rounded-box shadow">
@@ -62,7 +79,7 @@ const Login = () => {
             </button>
           </div>
         </form>
-        <LoginWithGoogle />
+        <LoginWithGoogle state={state} />
         <p className="text-xs sm:text-sm mt-5">
           Don't have an account?{" "}
           <Link to="/register" className="underline">

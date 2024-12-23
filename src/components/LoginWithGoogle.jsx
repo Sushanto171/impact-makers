@@ -1,8 +1,26 @@
-const LoginWithGoogle = () => {
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import useAuth from "./../hooks/useAuth";
+const LoginWithGoogle = ({ state }) => {
+  const { logInWithGoogle } = useAuth();
+  const navigate = useNavigate();
+
+  const logInHandle = async () => {
+    try {
+      await logInWithGoogle();
+      toast.success("Log in Success!");
+      navigate(state?.location || "/");
+    } catch (error) {
+      toast.error(`${error.message}`);
+    }
+  };
   return (
     <div>
       <div className="divider">OR</div>
-      <button className="btn w-full btn-ghost btn-outline  hover:text-[#ffdaa3]">
+      <button
+        onClick={logInHandle}
+        className="btn w-full btn-ghost btn-outline  hover:text-[#ffdaa3]"
+      >
         Log in with Google
       </button>
     </div>

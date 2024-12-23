@@ -1,11 +1,14 @@
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import LoginWithGoogle from "../components/LoginWithGoogle";
+import useAuth from "../hooks/useAuth";
 import useDynamicTitle from "./../hooks/useDynamicTitle";
 
 const Register = () => {
+  const { createUser, updateUserProfile, user } = useAuth();
+  const navigate = useNavigate();
   useDynamicTitle("Register");
-  const registerHandle = (e) => {
+  const registerHandle = async (e) => {
     e.preventDefault();
     const formData = e.target;
     const displayName = formData.name.value;
@@ -20,11 +23,25 @@ const Register = () => {
     if (!/[A - Z]/.test(password)) {
       return toast.error("Password at least one Uppercase");
     }
-    if (password.length <= 6) {
+    if (password.length < 6) {
       return toast.error("Password must includes 6 character or longer");
     }
     console.log({ displayName, email, photoURL, password });
+    try {
+      await createUser(email, password);
+      await updateUserProfile(displayName, photoURL);
+      toast.success("Register success!");
+      navigate("/");
+    } catch (error) {
+      toast.error(error.massage);
+    }
   };
+  if (user)
+    return (
+      <>
+        <Navigate to="/" />
+      </>
+    );
   return (
     <div className="flex justify-center items-center ">
       <div className="max-w-sm mx-auto w-full sm:max-w-md p-10 rounded-box shadow bg-base-200">

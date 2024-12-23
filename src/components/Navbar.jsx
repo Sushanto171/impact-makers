@@ -1,8 +1,24 @@
+import toast from "react-hot-toast";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import LoadingSpinner from "./Loading";
 
 const Navbar = () => {
-  const user = true;
+  const { signOutUser, loading } = useAuth();
+  const navigate = useNavigate();
+
+  const signOutHandle = async () => {
+    try {
+      await signOutUser();
+      toast.success("Log out success!");
+      navigate("/log-in");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const { user } = useAuth();
   const links = (
     <>
       <li>
@@ -23,7 +39,7 @@ const Navbar = () => {
       </li>
     </>
   );
-
+  if (loading) return <LoadingSpinner />;
   return (
     <nav className="sticky z-50 top-0 navbar justify-between text-[#ffdaa3]  bg-[#004a61] py-5 shadow-sm px:5  sm:px-10 md:px-14">
       <div className="">
@@ -33,39 +49,46 @@ const Navbar = () => {
       </div>
       <ul className="hidden  md:flex items-center gap-6">
         {links}
-        <li className="dropdown dropdown-center">
-          <div tabIndex={0} role="button">
-            <div className="flex items-center">
-              <span>My Profile</span>
-              <span>
-                <IoMdArrowDropdown />
-              </span>
+        {user && (
+          <li className="dropdown dropdown-center">
+            <div tabIndex={0} role="button">
+              <div className="flex items-center">
+                <span>My Profile</span>
+                <span>
+                  <IoMdArrowDropdown />
+                </span>
+              </div>
             </div>
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-9 bg-[#004a61b9] rounded-md z-[1]  w-64 p-2 shadow"
-          >
-            {links2}
-          </ul>
-        </li>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-9 bg-[#004a61b9] rounded-md z-[1]  w-64 p-2 shadow"
+            >
+              {links2}
+            </ul>
+          </li>
+        )}
       </ul>
       <div className="dropdown dropdown-end">
         <div className="flex-none flex items-center gap-2">
           {user ? (
             <>
-              <button className="btn btn-sm btn-outline text-[#ffdaa3]">
+              <button
+                onClick={signOutHandle}
+                className="btn btn-sm btn-outline text-[#ffdaa3]"
+              >
                 Log out
               </button>
               <div
+                title={user?.displayName}
                 tabIndex={0}
                 role="button"
                 className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-10 rounded-full">
                   <img
-                    alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    referrerPolicy="no-content"
+                    alt=""
+                    src={user?.photoURL}
                   />
                 </div>
               </div>

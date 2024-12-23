@@ -30,11 +30,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/volunteer-need-post",
-        element: (
-          <PrivateRoute>
-            <VolunteerNeedPosts />
-          </PrivateRoute>
-        ),
+        element: <VolunteerNeedPosts />,
       },
       {
         path: "/add-post",

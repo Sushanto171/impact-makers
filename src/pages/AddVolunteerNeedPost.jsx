@@ -28,7 +28,7 @@ const AddVolunteerNeedPost = () => {
       </h3>
       <div className="w-full max-w-lg mx-auto mt-10">
         <form onSubmit={handleForm}>
-          <div className="bg-base-200 w-full p-10 grid grid-cols-2 gap-4 rounded-md shadow">
+          <div className="bg-base-200 w-full p-10 sm:grid grid-cols-2 gap-4 rounded-md shadow">
             <label className="form-control w-full max-w-xs">
               <div className="label">
                 <span className="label-text">Thumbnail</span>
@@ -143,8 +143,8 @@ const AddVolunteerNeedPost = () => {
                 className="input input-bordered w-full"
               />
             </label>
-            <div className="col-span-2">
-              <button className="w-full px-6 py-3 font-medium hover:bg-[#004a61d8] tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#004A61] hover:text-[#ffdaa3] rounded-lg  focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
+            <div className="col-span-2 ">
+              <button className="w-full mt-5 px-6 py-3 font-medium hover:bg-[#004a61d8] tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#004A61] hover:text-[#ffdaa3] rounded-lg  focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
                 Add Post
               </button>
             </div>

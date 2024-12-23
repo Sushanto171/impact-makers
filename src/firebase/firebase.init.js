@@ -1,14 +1,12 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import auth from "./../firebase/firebase.init";
-dotenv.config();
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_apiKey,
-  authDomain: process.env.REACT_APP_authDomain,
-  projectId: process.env.REACT_APP_projectId,
-  storageBucket: process.env.REACT_APP_storageBucket,
-  messagingSenderId: process.env.REACT_APP_messagingSenderId,
-  appId: process.env.REACT_APP_appId,
+  apiKey: import.meta.env.VITE_API_apiKey,
+  authDomain: import.meta.env.VITE_API_authDomain,
+  projectId: import.meta.env.VITE_API_projectId,
+  storageBucket: import.meta.env.VITE_API_storageBucket,
+  messagingSenderId: import.meta.env.VITE_API_messagingSenderId,
+  appId: import.meta.env.VITE_API_appId,
 };
 
 const app = initializeApp(firebaseConfig);
