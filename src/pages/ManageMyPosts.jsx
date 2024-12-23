@@ -5,16 +5,22 @@ import MyVolunteerReqPost from "./../components/MyVolunteerReqPost";
 
 const ManageMyPosts = () => {
   return (
-    <div className="w-10/12 mx-auto">
+    <div className="w-10/12 mx-auto overflow-y-auto">
       <Tabs>
-        <TabList>
-          <Tab>
-            <span className="text-lg">My Volunteer Need Posts</span>
-          </Tab>
-          <Tab>
-            <span className=" text-lg">My Volunteer Request Post</span>
-          </Tab>
-        </TabList>
+        <div>
+          <TabList>
+            <Tab>
+              <p className="text-lg whitespace-nowrap overflow-y-auto w-28 sm:w-auto">
+                My Volunteer Need Posts
+              </p>
+            </Tab>
+            <Tab>
+              <p className=" text-lg whitespace-nowrap overflow-y-auto w-28  sm:w-auto">
+                My Volunteer Request Post
+              </p>
+            </Tab>
+          </TabList>
+        </div>
 
         <TabPanel>
           <MyVolunteerNeedPost />

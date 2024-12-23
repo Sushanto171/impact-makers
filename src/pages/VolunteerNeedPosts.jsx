@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import { useState } from "react";
+
 import { CgLayoutList } from "react-icons/cg";
 import { RiLayoutGrid2Fill } from "react-icons/ri";
-import VolunteerNeedsPostsCard from "../components/VolunteerNeedsPostsCard";
-
+import VolunteerNeedsPostsCard from "./../components/VolunteerNeedsPostsCard";
 import useDynamicTitle from "./../hooks/useDynamicTitle";
 const VolunteerNeedPosts = () => {
   useDynamicTitle("All Volunteer Needs Posts");
   const [controlLayout, setControlLayout] = useState("grid");
   return (
-    <div className="mx-auto md:w-10/12">
+    <div className="mx-auto md:w-10/12 overflow-hidden">
       <div className="sm:flex items-center">
         <h3 className="flex-1 text-2xl md:text-4xl text-center ">
           All Volunteer Needs Posts
         </h3>
         <div className="max-w-sm mx-auto w-full px-5 flex items-center gap-2">
           <form>
-            <label className="input input-bordered flex items-center gap-2 mx-auto w-full">
+            <label className="input input-bordered flex items-center gap-2 mx-auto w-52 sm:w-full">
               <input
                 type="text"
                 className="grow "

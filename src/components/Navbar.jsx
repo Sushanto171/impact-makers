@@ -2,7 +2,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const user = false;
+  const user = true;
   const links = (
     <>
       <li>
