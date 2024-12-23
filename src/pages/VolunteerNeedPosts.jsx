@@ -1,12 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { CgLayoutList } from "react-icons/cg";
 import { RiLayoutGrid2Fill } from "react-icons/ri";
 import VolunteerNeedsPostsCard from "./../components/VolunteerNeedsPostsCard";
+import useAxios from "./../hooks/useAxios";
 import useDynamicTitle from "./../hooks/useDynamicTitle";
 const VolunteerNeedPosts = () => {
   useDynamicTitle("All Volunteer Needs Posts");
   const [controlLayout, setControlLayout] = useState("grid");
+  const axiosInstance = useAxios();
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+  const fetchPosts = async (query = null) => {
+    if (query) {
+      const { data } = await axiosInstance.get(
+        `/volunteers-posts?query=${query}`
+      );
+      setPosts(data?.data);
+      return;
+    }
+    const { data } = await axiosInstance.get("/volunteers-posts");
+    setPosts(data?.data);
+  };
+
+  const handleSearch = (e) => {
+    const query = e.target.value;
+    console.log(query);
+    fetchPosts(query);
+  };
+
   return (
     <div className="mx-auto md:w-10/12 overflow-hidden">
       <div className="sm:flex items-center">
@@ -17,6 +42,7 @@ const VolunteerNeedPosts = () => {
           <form>
             <label className="input input-bordered flex items-center gap-2 mx-auto w-52 sm:w-full">
               <input
+                onBlur={handleSearch}
                 type="text"
                 className="grow "
                 placeholder="Search on title"
@@ -35,6 +61,7 @@ const VolunteerNeedPosts = () => {
               </svg>
             </label>
           </form>
+
           <div className="hidden  md:flex gap-4">
             <button
               onClick={() => setControlLayout("list")}
@@ -62,9 +89,15 @@ const VolunteerNeedPosts = () => {
             : "grid-cols-1 "
         }   gap-8`}
       >
-        <VolunteerNeedsPostsCard />
-        <VolunteerNeedsPostsCard />
-        <VolunteerNeedsPostsCard />
+        {posts.length === 0 ? (
+          <div className="w-10/12 mx-auto">
+            <h3 className="text-3xl ">No Posts Found...</h3>;
+          </div>
+        ) : (
+          posts.map((post) => (
+            <VolunteerNeedsPostsCard key={post._id} post={post} />
+          ))
+        )}
       </div>
     </div>
   );
