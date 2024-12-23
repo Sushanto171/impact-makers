@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import DetailsPost from "../components/DetailsPost";
+import useAxios from "../hooks/useAxios";
 import MainLayout from "../layout/MainLayout";
 import AddVolunteerNeedPost from "../pages/AddVolunteerNeedPost";
 import Error from "../pages/Error";
@@ -9,6 +10,7 @@ import ManageMyPosts from "../pages/ManageMyPosts";
 import Register from "../pages/Register";
 import VolunteerNeedPosts from "../pages/VolunteerNeedPosts";
 import PrivateRoute from "./PrivateRoute";
+const axiosInstance = useAxios();
 
 export const routes = createBrowserRouter([
   {
@@ -50,6 +52,12 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/post-details/:id",
+        loader: async ({ params }) => {
+          const { data } = await axiosInstance.get(
+            `/volunteer-post/${params.id}`
+          );
+          return data.data;
+        },
         element: (
           <PrivateRoute>
             <DetailsPost />

@@ -1,6 +1,46 @@
 import React from "react";
+import toast from "react-hot-toast";
+import useAuth from "../hooks/useAuth";
+import useAxios from "../hooks/useAxios";
 
-const Modal = () => {
+const Modal = ({ post, refresh }) => {
+  const { user } = useAuth();
+  const axiosInstance = useAxios();
+  const {
+    deadline,
+    location,
+    volunteers_needed,
+    organizer_email,
+    organizer_name,
+    category,
+    description,
+    post_title,
+    thumbnail,
+    _id,
+  } = post;
+
+  const handleForm = async (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target).entries();
+    const formData = {};
+    for (const [key, value] of form) {
+      formData[key] = value;
+    }
+    formData.status = "Requested";
+    formData.job_id = _id;
+    const updatedFormData = { ...formData };
+    delete updatedFormData.volunteers_needed;
+    console.log(updatedFormData);
+    try {
+      await axiosInstance.post("/volunteer-request", updatedFormData);
+      toast.success("Volunteer Request Sent");
+      document.getElementById("my_modal_4").close();
+      refresh();
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   return (
     <>
       <button
@@ -12,8 +52,16 @@ const Modal = () => {
 
       <dialog id="my_modal_4" className="modal">
         <div className="modal-box  w-10/12 ">
+          <div className="text-right">
+            <button
+              onClick={() => document.getElementById("my_modal_4").close()}
+              className="btn btn-xs"
+            >
+              X
+            </button>
+          </div>
           <div className="modal-action">
-            <form method="dialog">
+            <form onSubmit={handleForm}>
               {/* if there is a button, it will close the modal */}
               <div className="bg-base-200 w-full p-10 sm:grid grid-cols-2 gap-4 rounded-md shadow mx-auto">
                 <label className="form-control w-full max-w-xs">
@@ -22,9 +70,11 @@ const Modal = () => {
                   </div>
                   <input
                     required
+                    readOnly
                     type="text"
+                    defaultValue={user?.displayName}
                     placeholder="Name "
-                    name="name"
+                    name="volunteer_name"
                     className="input input-bordered w-full max-w-xs"
                   />
                 </label>{" "}
@@ -35,8 +85,10 @@ const Modal = () => {
                   <input
                     required
                     type="email"
+                    readOnly
+                    defaultValue={user?.email}
                     placeholder="email"
-                    name="email"
+                    name="volunteer_email"
                     className="input input-bordered w-full max-w-xs"
                   />
                 </label>{" "}
@@ -58,6 +110,8 @@ const Modal = () => {
                   <input
                     required
                     type="url"
+                    readOnly
+                    defaultValue={thumbnail}
                     placeholder="Thumbnail URL"
                     name="thumbnail"
                     className="input input-bordered w-full max-w-xs"
@@ -69,6 +123,8 @@ const Modal = () => {
                   </div>
                   <input
                     required
+                    defaultValue={post_title}
+                    readOnly
                     type="text"
                     placeholder="Post title"
                     name="post_title"
@@ -82,6 +138,8 @@ const Modal = () => {
                   <input
                     required
                     type="text"
+                    readOnly
+                    defaultValue={description}
                     placeholder="Description"
                     name="description"
                     className="input input-bordered w-full max-w-xs"
@@ -95,7 +153,8 @@ const Modal = () => {
                     required
                     name="category"
                     className="select select-bordered w-full max-w-xs"
-                    defaultValue=""
+                    value={category}
+                    readOnly
                   >
                     <option value="" disabled>
                       Select Category
@@ -113,6 +172,8 @@ const Modal = () => {
                   <input
                     required
                     type="text"
+                    readOnly
+                    defaultValue={location}
                     name="location"
                     placeholder="Location"
                     className="input input-bordered w-full max-w-xs"
@@ -127,6 +188,8 @@ const Modal = () => {
                   <input
                     required
                     type="number"
+                    readOnly
+                    defaultValue={volunteers_needed}
                     name="volunteers_needed"
                     placeholder="Volunteers needed"
                     className="input input-bordered w-full max-w-xs"
@@ -139,6 +202,8 @@ const Modal = () => {
                   <input
                     required
                     type="text"
+                    readOnly
+                    defaultValue={deadline}
                     name="organizer_name"
                     placeholder="Name"
                     className="input input-bordered w-full max-w-xs"
@@ -151,6 +216,8 @@ const Modal = () => {
                   <input
                     required
                     type="text"
+                    readOnly
+                    defaultValue={organizer_name}
                     name="organizer_name"
                     placeholder="Name"
                     className="input input-bordered w-full max-w-xs"
@@ -163,6 +230,8 @@ const Modal = () => {
                   <input
                     required
                     type="email"
+                    readOnly
+                    defaultValue={organizer_email}
                     name="organizer_email"
                     placeholder="Email "
                     className="input input-bordered w-full"
