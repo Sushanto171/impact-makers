@@ -38,6 +38,7 @@ const VolunteerNeedPosts = () => {
   const handleSearch = (e) => {
     const query = e.target.value;
     fetchPosts(query);
+    e.target.value = "";
   };
 
   const prevBtnHandle = () => {

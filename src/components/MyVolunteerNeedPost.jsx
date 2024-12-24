@@ -1,65 +1,57 @@
+import { useEffect, useState } from "react";
+import useAuth from "./../hooks/useAuth";
+import useAxios from "./../hooks/useAxios";
 import useDynamicTitle from "./../hooks/useDynamicTitle";
-import UpdateModal from "./UpdateModal";
+import LoadingSpinner from "./Loading";
+import MyPostsRow from "./MyPostsRow";
 
 const MyVolunteerNeedPost = () => {
+  const [myPosts, setMyPosts] = useState([]);
+  const { user } = useAuth();
+  const [loading, setLoading] = useState(true);
+  const axiosInstance = useAxios();
   useDynamicTitle("My Posts");
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    try {
+      const email = user?.email;
+      const { data } = await axiosInstance.get(`/volunteers-posts/${email}`);
+      setMyPosts(data?.data);
+    } catch (error) {
+      // console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  if (loading) return <LoadingSpinner />;
+  if (myPosts.length === 0)
+    return (
+      <h3 className="text-lg mt-10">
+        You haven't created a volunteer post yet..
+      </h3>
+    );
+
   return (
     <div>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table mt-10 border">
           {/* head */}
-          <thead>
+          <thead className="bg-base-300">
             <tr>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>#</th>
+              <th>Basic info</th>
+              <th>Description</th>
+              <th>Volunteer Needed</th>
               <th className="text-center">Action</th>
             </tr>
           </thead>
           <tbody>
-            {}
-            <tr>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
-              <td>
-                <div className="flex items-center gap-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle h-12 w-12">
-                      <img
-                        src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                        alt="Avatar Tailwind CSS Component"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-bold">Hart Hagerty</div>
-                    <div className="text-sm opacity-50">United States</div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                Zemlak, Daniel and Leannon
-                <br />
-                <span className="badge badge-ghost badge-sm">
-                  Desktop Support Technician
-                </span>
-              </td>
-              <td>Purple</td>
-              <td>
-                <div className="flex justify-between">
-                  <button className="btn btn-error btn-xs">Delete</button>
-                  <UpdateModal />
-                </div>
-              </td>
-            </tr>
+            {myPosts.map((post, i) => (
+              <MyPostsRow key={post._id} i={i} post={post} />
+            ))}
           </tbody>
         </table>
       </div>

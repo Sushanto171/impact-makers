@@ -1,11 +1,38 @@
 import { format } from "date-fns";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import toast from "react-hot-toast";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import useAxios from "../hooks/useAxios";
 const UpdateModal = () => {
-  const [startDate, setStartDate] = useState(new Date());
+  const post = useLoaderData();
+  const navigate = useNavigate();
+  const axiosInstance = useAxios();
+  const { id } = useParams();
 
-  const handleForm = (e) => {
+  const {
+    category,
+    post_title,
+    description,
+    volunteers_needed,
+    thumbnail,
+    deadline,
+
+    organizer_email,
+    organizer_name,
+    location,
+  } = post;
+
+  useEffect(() => {
+    handleModal();
+  }, []);
+
+  const handleModal = () => {
+    document.getElementById("my_modal_4").showModal();
+  };
+  const [startDate, setStartDate] = useState(new Date(deadline));
+  const handleForm = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target).entries();
     const data = {};
@@ -14,23 +41,37 @@ const UpdateModal = () => {
     }
     data.deadline = format(startDate, "P");
     data.volunteers_needed = parseInt(data.volunteers_needed);
-    console.log(data);
 
-    // toast
+    try {
+      const { data: res } = await axiosInstance.patch(
+        `/update-post/${id}`,
+        data
+      );
+      document.getElementById("my_modal_4").close();
+      navigate(-1);
+      toast.success("Post updated successfully.");
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
+
   return (
     <>
-      <button
-        className="btn btn-xs bg-[#ffdaa3]"
-        onClick={() => document.getElementById("my_modal_4").showModal()}
-      >
-        Update
-      </button>
-
       <dialog id="my_modal_4" className="modal">
         <div className="modal-box  w-10/12 ">
+          <div className="text-right">
+            <button
+              onClick={() => [
+                document.getElementById("my_modal_4").close(),
+                navigate(-1),
+              ]}
+              className="btn btn-sm"
+            >
+              X
+            </button>
+          </div>
           <div className="modal-action">
-            <form method="dialog">
+            <form onSubmit={handleForm}>
               {/* if there is a button, it will close the modal */}
               <div className="bg-base-200 w-full p-10 sm:grid grid-cols-2 gap-4 rounded-md shadow mx-auto">
                 <label className="form-control w-full max-w-xs">
@@ -40,7 +81,9 @@ const UpdateModal = () => {
                   <input
                     required
                     type="text"
+                    defaultValue={organizer_name}
                     placeholder="Name "
+                    readOnly
                     name="name"
                     className="input input-bordered w-full max-w-xs"
                   />
@@ -52,22 +95,13 @@ const UpdateModal = () => {
                   <input
                     required
                     type="email"
+                    readOnly
+                    defaultValue={organizer_email}
                     placeholder="email"
                     name="email"
                     className="input input-bordered w-full max-w-xs"
                   />
                 </label>{" "}
-                <label className="form-control w-full col-span-2">
-                  <div className="label">
-                    <span className="label-text">Suggestion</span>
-                  </div>
-                  <textarea
-                    name="suggestion"
-                    placeholder="Suggestion.."
-                    required="14"
-                    className="textarea textarea-bordered w-full"
-                  ></textarea>
-                </label>
                 <label className="form-control w-full max-w-xs">
                   <div className="label">
                     <span className="label-text">Thumbnail</span>
@@ -75,6 +109,7 @@ const UpdateModal = () => {
                   <input
                     required
                     type="url"
+                    defaultValue={thumbnail}
                     placeholder="Thumbnail URL"
                     name="thumbnail"
                     className="input input-bordered w-full max-w-xs"
@@ -87,21 +122,23 @@ const UpdateModal = () => {
                   <input
                     required
                     type="text"
+                    defaultValue={post_title}
                     placeholder="Post title"
                     name="post_title"
                     className="input input-bordered w-full max-w-xs"
                   />
                 </label>
-                <label className="form-control w-full max-w-xs">
+                <label className="form-control col-span-2 w-full ">
                   <div className="label">
                     <span className="label-text">Description</span>
                   </div>
                   <input
                     required
                     type="text"
+                    defaultValue={description}
                     placeholder="Description"
                     name="description"
-                    className="input input-bordered w-full max-w-xs"
+                    className="input input-bordered w-full "
                   />
                 </label>
                 <label className="form-control w-full max-w-xs">
@@ -112,7 +149,7 @@ const UpdateModal = () => {
                     required
                     name="category"
                     className="select select-bordered w-full max-w-xs"
-                    defaultValue=""
+                    defaultValue={category}
                   >
                     <option value="" disabled>
                       Select Category
@@ -131,6 +168,7 @@ const UpdateModal = () => {
                     required
                     type="text"
                     name="location"
+                    defaultValue={location}
                     placeholder="Location"
                     className="input input-bordered w-full max-w-xs"
                   />
@@ -144,6 +182,7 @@ const UpdateModal = () => {
                   <input
                     required
                     type="number"
+                    defaultValue={volunteers_needed}
                     name="volunteers_needed"
                     placeholder="Volunteers needed"
                     className="input input-bordered w-full max-w-xs"
@@ -158,30 +197,6 @@ const UpdateModal = () => {
                     className="input input-bordered w-full max-w-xs"
                     selected={startDate}
                     onChange={(date) => setStartDate(date)}
-                  />
-                </label>
-                <label className="form-control w-full max-w-xs">
-                  <div className="label">
-                    <span className="label-text">Organizer Name</span>
-                  </div>
-                  <input
-                    required
-                    type="text"
-                    name="organizer_name"
-                    placeholder="Name"
-                    className="input input-bordered w-full max-w-xs"
-                  />
-                </label>
-                <label className="form-control col-span-2 w-full ">
-                  <div className="label">
-                    <span className="label-text">Organizer Email</span>
-                  </div>
-                  <input
-                    required
-                    type="email"
-                    name="organizer_email"
-                    placeholder="Email "
-                    className="input input-bordered w-full"
                   />
                 </label>
                 <div className="col-span-2 mt-5">

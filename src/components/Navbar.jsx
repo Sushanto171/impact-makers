@@ -35,7 +35,7 @@ const Navbar = () => {
         <Link to="/add-post">Add Volunteer need Post</Link>
       </li>
       <li>
-        <Link to="/my-posts">Manage My Posts </Link>
+        <Link to="/manage-posts">Manage My Posts </Link>
       </li>
     </>
   );

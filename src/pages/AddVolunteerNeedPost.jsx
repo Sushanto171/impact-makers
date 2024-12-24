@@ -2,13 +2,20 @@ import { format } from "date-fns";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import toast from "react-hot-toast";
 import { SiLibreofficewriter } from "react-icons/si";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import useAxios from "../hooks/useAxios";
 import useDynamicTitle from "./../hooks/useDynamicTitle";
 const AddVolunteerNeedPost = () => {
   const [startDate, setStartDate] = useState(new Date());
+  const axiosInstance = useAxios();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   useDynamicTitle("Add Volunteer Post");
 
-  const handleForm = (e) => {
+  const handleForm = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target).entries();
     const data = {};
@@ -17,9 +24,16 @@ const AddVolunteerNeedPost = () => {
     }
     data.deadline = format(startDate, "P");
     data.volunteers_needed = parseInt(data.volunteers_needed);
-    console.log(data);
 
-    // toast
+    // store data on the database
+    try {
+      const res = await axiosInstance.post(`/volunteers-posts`, data);
+      toast.success("Post create success!");
+      e.target.reset();
+      navigate("/manage-posts");
+    } catch (error) {
+      toast.error("Failed to create post");
+    }
   };
   return (
     <div className="flex flex-col items-center">
@@ -126,6 +140,8 @@ const AddVolunteerNeedPost = () => {
               <input
                 required
                 type="text"
+                readOnly
+                defaultValue={user?.displayName}
                 name="organizer_name"
                 placeholder="Name"
                 className="input input-bordered w-full max-w-xs"
@@ -138,6 +154,8 @@ const AddVolunteerNeedPost = () => {
               <input
                 required
                 type="email"
+                readOnly
+                defaultValue={user?.email}
                 name="organizer_email"
                 placeholder="Email "
                 className="input input-bordered w-full"

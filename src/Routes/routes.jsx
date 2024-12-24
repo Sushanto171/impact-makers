@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import ManageMyPosts from "../pages/ManageMyPosts";
 import Register from "../pages/Register";
 import VolunteerNeedPosts from "../pages/VolunteerNeedPosts";
+import UpdateModal from "./../components/UpdateModal";
 import PrivateRoute from "./PrivateRoute";
 const axiosInstance = useAxios();
 
@@ -47,10 +48,24 @@ export const routes = createBrowserRouter([
         ),
       },
       {
-        path: "/my-posts",
+        path: "/manage-posts",
         element: (
           <PrivateRoute>
             <ManageMyPosts />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update-post/:id",
+        loader: async ({ params }) => {
+          const { data } = await axiosInstance.get(
+            `/volunteer-post/${params.id}`
+          );
+          return data.data;
+        },
+        element: (
+          <PrivateRoute>
+            <UpdateModal />
           </PrivateRoute>
         ),
       },
