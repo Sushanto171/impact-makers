@@ -18,6 +18,7 @@ const Modal = ({ post, refresh }) => {
     thumbnail,
     _id,
   } = post;
+  console.log(volunteers_needed);
 
   const handleForm = async (e) => {
     e.preventDefault();
@@ -28,6 +29,12 @@ const Modal = ({ post, refresh }) => {
     }
     formData.status = "Requested";
     formData.job_id = _id;
+    if (volunteers_needed <= 0) {
+      document.getElementById("my_modal_4").close();
+      return toast(
+        "Volunteer requirement fulfilled. No more volunteers needed."
+      );
+    }
     const updatedFormData = { ...formData };
     delete updatedFormData.volunteers_needed;
     console.log(updatedFormData);

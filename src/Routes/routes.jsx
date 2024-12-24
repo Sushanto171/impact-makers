@@ -31,7 +31,11 @@ export const routes = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/volunteer-need-post",
+        path: "/all-volunteer-need-post",
+        loader: async () => {
+          const { data } = await axiosInstance.get("/count");
+          return data;
+        },
         element: <VolunteerNeedPosts />,
       },
       {

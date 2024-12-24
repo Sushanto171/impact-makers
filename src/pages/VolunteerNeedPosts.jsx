@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { CgLayoutList } from "react-icons/cg";
 import { RiLayoutGrid2Fill } from "react-icons/ri";
+import { useLoaderData } from "react-router-dom";
 import VolunteerNeedsPostsCard from "./../components/VolunteerNeedsPostsCard";
 import useAxios from "./../hooks/useAxios";
 import useDynamicTitle from "./../hooks/useDynamicTitle";
@@ -10,10 +11,16 @@ const VolunteerNeedPosts = () => {
   const [controlLayout, setControlLayout] = useState("grid");
   const axiosInstance = useAxios();
   const [posts, setPosts] = useState([]);
+  const { count } = useLoaderData();
+  const [numberOfShow, setNumberOfShow] = useState(9);
+  const [currentPage, setCurrentPage] = useState(1);
 
+  const pages = Math.ceil(count / numberOfShow);
+
+  const array = Array.from({ length: pages }, (_, i) => i + 1);
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [currentPage, numberOfShow]);
   const fetchPosts = async (query = null) => {
     if (query) {
       const { data } = await axiosInstance.get(
@@ -22,14 +29,24 @@ const VolunteerNeedPosts = () => {
       setPosts(data?.data);
       return;
     }
-    const { data } = await axiosInstance.get("/volunteers-posts");
+    const { data } = await axiosInstance.get(
+      `/volunteers-posts?currentPage=${currentPage}&size=${numberOfShow}`
+    );
     setPosts(data?.data);
   };
 
   const handleSearch = (e) => {
     const query = e.target.value;
-    console.log(query);
     fetchPosts(query);
+  };
+
+  const prevBtnHandle = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const nextBtnHandle = () => {
+    if (array.length > currentPage) setCurrentPage(currentPage + 1);
   };
 
   return (
@@ -98,6 +115,37 @@ const VolunteerNeedPosts = () => {
             <VolunteerNeedsPostsCard key={post._id} post={post} />
           ))
         )}
+      </div>
+      <div className="flex justify-center items-center mt-10">
+        <button onClick={prevBtnHandle} className="btn">
+          Prev
+        </button>
+        <div>
+          {array.map((page) => (
+            <button
+              onClick={() => setCurrentPage(page)}
+              className={`btn mx-1 ${
+                currentPage === parseInt(page) ? "bg-[#004a61] text-white" : ""
+              }`}
+              key={page}
+            >
+              {page}{" "}
+            </button>
+          ))}
+        </div>
+        <button onClick={nextBtnHandle} className="btn">
+          Next
+        </button>
+        <select
+          value={numberOfShow}
+          onChange={(e) => [setNumberOfShow(e.target.value), setCurrentPage(1)]}
+          className="select select-ghost  select-bordered max-w-xs ml-4"
+        >
+          <option value={6}>6</option>
+          <option value={9}>9</option>
+          <option value={15}>15</option>
+          <option value={20}>20</option>
+        </select>
       </div>
     </div>
   );
