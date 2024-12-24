@@ -1,8 +1,9 @@
+import { GoArrowRight } from "react-icons/go";
 import handImage from "../assets/hand.png";
 const Footer = () => {
   return (
     <footer
-      className=" bg-neutral text-neutral-content p-10 bg-no-repeat bg-contain sm:px-10 md:px-20 min-h-52 "
+      className=" bg-black/90 text-neutral-content p-10 bg-no-repeat bg-contain sm:px-10 md:px-20 min-h-52 "
       style={{ backgroundImage: `url(${handImage})` }}
     >
       <div className="footer">
@@ -11,6 +12,14 @@ const Footer = () => {
           <h2 className="text-2xl font-semibold text-[#ffdaa3]">
             Impact Makers
           </h2>
+          <h4 className="font-bold text-lg  flex items-center gap-2">
+            About us <GoArrowRight className="" />
+          </h4>
+          <p className="max-w-sm opacity-80 tracking-wide">
+            Empowering connections between volunteers and communities,
+            ImpactMakers is dedicated to creating meaningful change through
+            collaboration and support.
+          </p>
         </aside>
         <nav>
           <h6 className="footer-title">Social</h6>
@@ -55,8 +64,8 @@ const Footer = () => {
         <hr className="border border-base-200" />
         <aside>
           <p className="text-sm">
-            Copyright © {new Date().getFullYear()} - All right reserved by ACME
-            Industries Ltd
+            Copyright © {new Date().getFullYear()} - All right reserved by
+            Impact Makers
           </p>
         </aside>
       </div>

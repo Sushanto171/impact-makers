@@ -16,6 +16,11 @@ import Slide from "./Slide";
 const Banner = () => {
   return (
     <>
+      <div className="flex -mt-[39px]">
+        <div className=" h-0.5 bg-[#ffdaa3] w-full"></div>
+        <div className=" w-full"></div>
+        <div className=" bg-[#ffdaa3] w-full"></div>
+      </div>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -28,7 +33,7 @@ const Banner = () => {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+        className="mySwiper "
       >
         <SwiperSlide>
           <Slide text="Together for Change" img={bgImg1} />

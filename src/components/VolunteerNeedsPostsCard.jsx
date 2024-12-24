@@ -1,12 +1,24 @@
 import { Link } from "react-router-dom";
 
-const VolunteerNeedsPostsCard = ({ post }) => {
+const VolunteerNeedsPostsCard = ({ post, controlLayout }) => {
   return (
-    <div className="card card-side bg-base-100 border shadow">
-      <figure>
-        <img src={post?.thumbnail} alt="Movie" />
+    <div
+      className={`card ${
+        controlLayout === "grid" ? " flex-col" : "flex-row"
+      } card-side bg-base-300 border border-transparent hover:border-white/50 pl-0 p-4 shadow`}
+    >
+      <figure
+        className={` ${
+          controlLayout !== "grid" ? "w-40" : "w-full"
+        } ml-2 rounded-md`}
+      >
+        <img
+          className="w-full h-40 object-cover rounded-md"
+          src={post?.thumbnail}
+          alt="Movie"
+        />
       </figure>
-      <div className="card-body">
+      <div className="card-body p-4">
         <h2 className="card-title text-lg">{post?.post_title}</h2>
         <p>Category: {post?.category}</p>
         <p>Deadline: {post?.deadline}</p>

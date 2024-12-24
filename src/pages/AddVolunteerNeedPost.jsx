@@ -36,8 +36,8 @@ const AddVolunteerNeedPost = () => {
     }
   };
   return (
-    <div className="flex flex-col items-center">
-      <h3 className="text-2xl md:text-4xl flex gap-4">
+    <div className=" w-10/12 mx-auto flex flex-col items-center">
+      <h3 className="text-2xl md:text-4xl flex gap-4 text-center">
         Add Volunteer Need Post <SiLibreofficewriter />
       </h3>
       <div className="w-full max-w-lg mx-auto mt-10">

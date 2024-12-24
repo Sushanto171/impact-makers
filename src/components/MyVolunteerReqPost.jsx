@@ -46,7 +46,7 @@ const MyVolunteerReqPost = () => {
   return (
     <div>
       <div className="overflow-x-auto">
-        <table className="table mt-10">
+        <table className="table mt-10 border">
           {/* head */}
           <thead className="bg-base-300">
             <tr>

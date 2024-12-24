@@ -1,12 +1,23 @@
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { IoMdArrowDropdown } from "react-icons/io";
-import { Link, useNavigate } from "react-router-dom";
+import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import LoadingSpinner from "./Loading";
 
 const Navbar = () => {
   const { signOutUser, loading } = useAuth();
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const [theme, setTheme] = useState(true);
+
+  useEffect(() => {
+    if (theme) {
+      document.documentElement.setAttribute("data-theme", "light");
+      return;
+    }
+    document.documentElement.setAttribute("data-theme", "dark");
+  }, [theme]);
 
   const signOutHandle = async () => {
     try {
@@ -18,24 +29,76 @@ const Navbar = () => {
     }
   };
 
-  const { user } = useAuth();
+  const toggle = (
+    <>
+      <input
+        onClick={() => setTheme(!theme)}
+        type="checkbox"
+        className="toggle"
+        defaultChecked
+      />
+    </>
+  );
   const links = (
     <>
       <li>
-        <Link to={"/"}>Home</Link>
+        <NavLink to={"/"} className={` flex items-center`}>
+          {({ isActive }) => (
+            <>
+              <IoMdArrowDropright
+                size={20}
+                className={`${isActive ? "block" : "hidden"}`}
+              />
+              Home
+            </>
+          )}
+        </NavLink>
       </li>
       <li>
-        <Link to={"/all-volunteer-need-post"}>All Volunteer Need Posts</Link>
+        <NavLink
+          className={` flex items-center`}
+          to={"/all-volunteer-need-post"}
+        >
+          {({ isActive }) => (
+            <>
+              <IoMdArrowDropright
+                size={20}
+                className={`${isActive ? "block" : "hidden"}`}
+              />
+              All Volunteer Need Posts
+            </>
+          )}
+        </NavLink>
       </li>
     </>
   );
   const links2 = (
     <>
       <li>
-        <Link to="/add-post">Add Volunteer need Post</Link>
+        <NavLink className={` flex items-center`} to="/add-post">
+          {({ isActive }) => (
+            <>
+              <IoMdArrowDropright
+                size={20}
+                className={`${isActive ? "block" : "hidden"}`}
+              />
+              Add Volunteer need Post
+            </>
+          )}
+        </NavLink>
       </li>
       <li>
-        <Link to="/manage-posts">Manage My Posts </Link>
+        <NavLink className={` flex items-center`} to="/manage-posts">
+          {({ isActive }) => (
+            <>
+              <IoMdArrowDropright
+                size={20}
+                className={`${isActive ? "block" : "hidden"}`}
+              />
+              Manage My Posts
+            </>
+          )}
+        </NavLink>
       </li>
     </>
   );
@@ -70,6 +133,8 @@ const Navbar = () => {
       </ul>
       <div className="dropdown dropdown-end">
         <div className="flex-none flex items-center gap-2">
+          <span className="hidden sm:block">{toggle}</span>
+
           {user ? (
             <>
               <button
@@ -94,8 +159,9 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu md:hidden menu-sm dropdown-content mt-48 bg-[#004a61b9] rounded-box z-[1]  w-52 p-2 shadow"
+                className="menu md:hidden menu-sm dropdown-content mt-64 bg-[#004a61b9] rounded-box z-[1]  w-52 p-2 shadow"
               >
+                <span className="text-right">{toggle}</span>
                 {links}
                 {links2}
               </ul>

@@ -7,7 +7,7 @@ const MainLayout = () => {
       {/* navbar */}
       <Navbar />
 
-      <div className="min-h-[calc(100vh-310px)] bg-white py-10">
+      <div className="min-h-[calc(100vh-310px)] pb-10 bg-base-100 pt-10">
         {/* dynamic */}
         <Outlet />
       </div>

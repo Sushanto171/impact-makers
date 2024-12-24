@@ -51,14 +51,14 @@ const VolunteerNeedPosts = () => {
   };
 
   return (
-    <div className="mx-auto md:w-10/12 overflow-hidden">
+    <div className="mx-auto w-10/12 overflow-hidden">
       <div className="sm:flex items-center">
         <h3 className="flex-1 text-2xl md:text-4xl text-center ">
           All Volunteer Needs Posts
         </h3>
-        <div className="max-w-sm mx-auto w-full px-5 flex items-center gap-2">
+        <div className="max-w-sm mx-auto w-full px-5 flex items-center gap-1 p-1">
           <form>
-            <label className="input input-bordered flex items-center gap-2 mx-auto w-52 sm:w-full">
+            <label className="input input-bordered flex items-center gap-2 mx-auto w-64 sm:w-full py-1">
               <input
                 onBlur={handleSearch}
                 type="text"
@@ -80,7 +80,7 @@ const VolunteerNeedPosts = () => {
             </label>
           </form>
 
-          <div className="hidden  md:flex gap-4">
+          <div className="hidden  md:flex gap-1">
             <button
               onClick={() => setControlLayout("list")}
               className={`btn btn-ghost p-2 ${
@@ -113,34 +113,38 @@ const VolunteerNeedPosts = () => {
           </div>
         ) : (
           posts.map((post) => (
-            <VolunteerNeedsPostsCard key={post._id} post={post} />
+            <VolunteerNeedsPostsCard
+              controlLayout={controlLayout}
+              key={post._id}
+              post={post}
+            />
           ))
         )}
       </div>
-      <div className="flex justify-center items-center mt-10">
-        <button onClick={prevBtnHandle} className="btn">
+      <div className="flex justify-center items-center mt-10 p-1">
+        <button onClick={prevBtnHandle} className="btn  btn-sm">
           Prev
         </button>
-        <div>
+        <div className="flex">
           {array.map((page) => (
             <button
               onClick={() => setCurrentPage(page)}
-              className={`btn mx-1 ${
+              className={`btn btn-sm mx-1 ${
                 currentPage === parseInt(page) ? "bg-[#004a61] text-white" : ""
               }`}
               key={page}
             >
-              {page}{" "}
+              {page}
             </button>
           ))}
         </div>
-        <button onClick={nextBtnHandle} className="btn">
+        <button onClick={nextBtnHandle} className="btn btn-sm">
           Next
         </button>
         <select
           value={numberOfShow}
           onChange={(e) => [setNumberOfShow(e.target.value), setCurrentPage(1)]}
-          className="select select-ghost  select-bordered max-w-xs ml-4"
+          className="hidden sm:block select select-ghost select-sm select-bordered max-w-xs ml-4"
         >
           <option value={6}>6</option>
           <option value={9}>9</option>

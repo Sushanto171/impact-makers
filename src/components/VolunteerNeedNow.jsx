@@ -16,8 +16,8 @@ const VolunteerNeedNow = () => {
     setPosts(data?.data);
   };
   return (
-    <div className="mt-10">
-      <h2 className="text-2xl md:text-4xl text-center flex justify-center gap-4 py-5">
+    <div className="pt-10">
+      <h2 className="text-2xl md:text-4xl text-gray-700 text-center flex justify-center gap-4 py-5">
         Volunteer Needs Now <SiOpensearch />
       </h2>
       <div className="">
@@ -25,7 +25,7 @@ const VolunteerNeedNow = () => {
           {posts.map((post) => (
             <div
               key={post._id}
-              className="card border shadow-md rounded-md overflow-hidden"
+              className="card bg-base-300 border border-transparent hover:border-white/50 shadow-md rounded-md overflow-hidden"
             >
               <img
                 src={post.thumbnail}
@@ -34,7 +34,9 @@ const VolunteerNeedNow = () => {
               />
               <div className="p-4 flex flex-col justify-between h-full">
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-2">{post.post_title}</h3>
+                  <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                    {post.post_title}
+                  </h3>
                   <p className="text-sm text-gray-600">
                     Category: {post.category}
                   </p>
