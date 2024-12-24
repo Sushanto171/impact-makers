@@ -1,23 +1,28 @@
 import React from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import useAxios from "../hooks/useAxios";
 
-const MyPostsRow = ({ post, i, deleteHandler }) => {
+const MyReqRow = ({ post, i, cancelHandler }) => {
+  const axiosInstance = useAxios();
+  const user = useAuth();
   const {
     category,
     post_title,
     description,
-    volunteers_needed,
+    organizer_email,
+    organizer_name,
     thumbnail,
     deadline,
     _id,
   } = post;
-  const deleteWaring = (id) => {
+
+  const cancelWaring = (id) => {
     toast((t) => (
       <div>
-        <span>Confirm delete?</span>
+        <span>Confirm cancel?</span>
         <button
-          onClick={() => [deleteHandler(_id), toast.dismiss(t.id)]}
+          onClick={() => [cancelHandler(_id), toast.dismiss(t.id)]}
           className="btn btn-xs text-error"
         >
           {" "}
@@ -50,22 +55,22 @@ const MyPostsRow = ({ post, i, deleteHandler }) => {
         </div>
       </td>
       <td>{description}</td>
-      <td> {volunteers_needed}</td>
+      <td>
+        <p>{organizer_name}</p>
+        <p>{organizer_email}</p>
+      </td>
       <td>
         <div className="flex justify-between">
           <button
-            onClick={() => deleteWaring(_id)}
+            onClick={() => cancelWaring(_id)}
             className="btn btn-error btn-xs"
           >
-            Delete
+            Cancel
           </button>
-          <Link to={`/update-post/${_id}`}>
-            <button className="btn btn-xs bg-[#ffdaa3]">Update</button>
-          </Link>
         </div>
       </td>
     </tr>
   );
 };
 
-export default MyPostsRow;
+export default MyReqRow;

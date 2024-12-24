@@ -18,7 +18,6 @@ const Modal = ({ post, refresh }) => {
     thumbnail,
     _id,
   } = post;
-  console.log(volunteers_needed);
 
   const handleForm = async (e) => {
     e.preventDefault();
@@ -37,7 +36,6 @@ const Modal = ({ post, refresh }) => {
     }
     const updatedFormData = { ...formData };
     delete updatedFormData.volunteers_needed;
-    console.log(updatedFormData);
     try {
       await axiosInstance.post("/volunteer-request", updatedFormData);
       toast.success("Volunteer Request Sent");

@@ -1,60 +1,71 @@
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import useAuth from "../hooks/useAuth";
+import useAxios from "../hooks/useAxios";
 import useDynamicTitle from "./../hooks/useDynamicTitle";
+import LoadingSpinner from "./Loading";
+import MyReqRow from "./MyReqRow";
 const MyVolunteerReqPost = () => {
+  const { user } = useAuth();
+  const axiosInstance = useAxios();
+  const [loading, setLoading] = useState(true);
+  const [myReq, setMyReq] = useState([]);
+
+  useEffect(() => {
+    const email = user?.email;
+    fetchData(email);
+  }, [user]);
+
+  const fetchData = async (email) => {
+    try {
+      const { data } = await axiosInstance.get(`/volunteer-request/${email}`);
+      setMyReq(data?.data);
+    } catch (error) {
+      // console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const cancelHandler = async (id) => {
+    try {
+      const { data } = await axiosInstance.delete(
+        `/volunteer-req-cancel/${id}`
+      );
+      toast.success("Successfully requested cancel");
+      fetchData(user?.email);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useDynamicTitle("My Volunteer Request Post");
+  if (loading) return <LoadingSpinner />;
+  if (myReq.length === 0)
+    return <h3 className="text-lg mt-10">You haven't request yet..</h3>;
   return (
     <div>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table mt-10">
           {/* head */}
-          <thead>
+          <thead className="bg-base-300">
             <tr>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
-              <th className="">Action</th>
+              <th>#</th>
+              <th>Basic info</th>
+              <th>Description</th>
+              <th>Organizer Info</th>
+              <th className="text-center">Action</th>
             </tr>
           </thead>
           <tbody>
-            {}
-            <tr>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
-              <td>
-                <div className="flex items-center gap-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle h-12 w-12">
-                      <img
-                        src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                        alt="Avatar Tailwind CSS Component"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-bold">Hart Hagerty</div>
-                    <div className="text-sm opacity-50">United States</div>
-                  </div>
-                </div>
-              </td>
-              <td>
-                Zemlak, Daniel and Leannon
-                <br />
-                <span className="badge badge-ghost badge-sm">
-                  Desktop Support Technician
-                </span>
-              </td>
-              <td>Purple</td>
-              <th>
-                <button className="btn btn-ghost btn-xs">Cancel</button>
-              </th>
-            </tr>
+            {myReq.map((post, i) => (
+              <MyReqRow
+                post={post}
+                cancelHandler={cancelHandler}
+                i={i}
+                key={post._id}
+              />
+            ))}
           </tbody>
         </table>
       </div>

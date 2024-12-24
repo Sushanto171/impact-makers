@@ -49,7 +49,7 @@ const UpdateModal = () => {
       );
       document.getElementById("my_modal_4").close();
       navigate(-1);
-      toast.success("Post updated successfully.");
+      toast.success("Post updated successfully!");
     } catch (error) {
       toast.error(error.message);
     }

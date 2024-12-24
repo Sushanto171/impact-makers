@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import useAuth from "./../hooks/useAuth";
 import useAxios from "./../hooks/useAxios";
 import useDynamicTitle from "./../hooks/useDynamicTitle";
@@ -26,6 +27,18 @@ const MyVolunteerNeedPost = () => {
       setLoading(false);
     }
   };
+
+  const deleteHandler = async (id) => {
+    console.log(id);
+    try {
+      const { data } = await axiosInstance.delete(`/delete-post/${id}`);
+      toast.success("Post deleted successfully!");
+      fetchPosts();
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   if (loading) return <LoadingSpinner />;
   if (myPosts.length === 0)
     return (
@@ -50,7 +63,12 @@ const MyVolunteerNeedPost = () => {
           </thead>
           <tbody>
             {myPosts.map((post, i) => (
-              <MyPostsRow key={post._id} i={i} post={post} />
+              <MyPostsRow
+                deleteHandler={deleteHandler}
+                key={post._id}
+                i={i}
+                post={post}
+              />
             ))}
           </tbody>
         </table>
