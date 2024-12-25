@@ -57,6 +57,7 @@ const Navbar = () => {
           )}
         </NavLink>
       </li>
+
       <li>
         <NavLink
           className={` flex items-center`}
@@ -69,6 +70,19 @@ const Navbar = () => {
                 className={`${isActive ? "block" : "hidden"}`}
               />
               All Volunteer Need Posts
+            </>
+          )}
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to={"/blogs"} className={` flex items-center`}>
+          {({ isActive }) => (
+            <>
+              <IoMdArrowDropright
+                size={20}
+                className={`${isActive ? "block" : "hidden"}`}
+              />
+              Blogs
             </>
           )}
         </NavLink>

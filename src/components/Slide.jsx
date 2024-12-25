@@ -1,8 +1,7 @@
+import { motion } from "framer-motion";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
 
-const Slide = ({ img, text }) => {
-  const navigate = useNavigate();
+const Slide = ({ img, text, id, isActive }) => {
   const seeMoreHandler = () => {
     const move = document.querySelector("#all-post");
     if (move) {
@@ -11,30 +10,64 @@ const Slide = ({ img, text }) => {
   };
   return (
     <div
-      className={`h-[20rem] md:h-[30rem] w-full bg-cover bg-center bg-no-repeat`}
+      key={id}
+      className="h-[20rem] md:h-[30rem] w-full bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${img})` }}
     >
-      <div className="h-full w-full bg-black/50 ">
-        <div className="py-20 md:p-32 lg:pl-44 text-left">
-          <h1
+      <div className="h-full w-full bg-black/50">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{
+            duration: 0.8,
+            ease: "easeInOut",
+            bounce: 0.5,
+          }}
+          className="py-20 md:p-32 lg:pl-44 text-left"
+        >
+          <motion.h1
+            initial={{ opacity: 0, y: 50 }}
+            animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            transition={{
+              duration: 0.8,
+              ease: "easeInOut",
+              delay: 0.2,
+            }}
             className="text-xl font-bold leading-relaxed tracking-wide md:text-4xl text-white text-center"
-            style={{ textShadow: "0px 3px 5px black " }}
           >
             {text}..
-          </h1>
-          <p className="text-white text-sm text-center mt-4 opacity-70 px-5">
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 50 }}
+            animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            transition={{
+              duration: 0.8,
+              ease: "easeInOut",
+              delay: 0.4,
+            }}
+            className="text-white text-sm text-center mt-4 opacity-70 px-5"
+          >
             Find or Become a Volunteer for Causes That Matter
-          </p>
+          </motion.p>
+
           <div className="flex justify-center mt-8">
-            <button
+            <motion.button
+              initial={{ opacity: 0, y: 50 }}
+              animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+              transition={{
+                duration: 0.8,
+                ease: "easeInOut",
+                delay: 0.6,
+              }}
               onClick={seeMoreHandler}
-              className="btn  bg-[#ffdaa3] hover:bg-transparent hover:text-white"
+              className="btn bg-[#ffdaa3] hover:bg-transparent hover:text-white"
             >
               Get Started
               <IoIosArrowRoundForward size={30} />
-            </button>
+            </motion.button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

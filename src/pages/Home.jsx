@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Banner from "../components/Banner";
 import VolunteerNeedNow from "../components/VolunteerNeedNow";
 
+import Blogs from "../components/Blogs";
 import EventCalendar from "../components/EventCalendar";
 import useDynamicTitle from "./../hooks/useDynamicTitle";
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
         <VolunteerNeedNow />
       </div>
       <EventCalendar />
+      <Blogs />
     </div>
   );
 };

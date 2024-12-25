@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import React, { useEffect, useState } from "react";
 import { SiOpensearch } from "react-icons/si";
 import { Link } from "react-router-dom";
@@ -17,10 +18,31 @@ const VolunteerNeedNow = () => {
   };
   return (
     <div className="pt-10">
-      <h2 className="text-2xl md:text-4xl text-gray-700 text-center flex justify-center gap-4 py-5 underline items-center">
+      <motion.h2
+        initial={{ y: 50, opacity: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{
+          duration: 0.8,
+          ease: "easeInOut",
+          bounceDamping: 1,
+          delay: 0.2,
+        }}
+        className="text-2xl md:text-4xl text-gray-700 text-center flex justify-center gap-4 py-5 underline items-center"
+      >
         Volunteer Needs Now <SiOpensearch />
-      </h2>
-      <div className="">
+      </motion.h2>
+      <motion.div
+        initial={{ y: 50, opacity: 0 }}
+        viewport={{ once: true, amount: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{
+          duration: 0.8,
+          ease: "easeInOut",
+          bounceDamping: 1,
+          delay: 0.4,
+        }}
+      >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-10">
           {posts.map((post) => (
             <div
@@ -62,7 +84,7 @@ const VolunteerNeedNow = () => {
             </button>
           </Link>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

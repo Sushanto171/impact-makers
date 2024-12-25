@@ -3,6 +3,7 @@ import DetailsPost from "../components/DetailsPost";
 import useAxios from "../hooks/useAxios";
 import MainLayout from "../layout/MainLayout";
 import AddVolunteerNeedPost from "../pages/AddVolunteerNeedPost";
+import Blogs from "../pages/Blogs";
 import Error from "../pages/Error";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -30,6 +31,10 @@ export const routes = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs />,
       },
       {
         path: "/all-volunteer-need-post",
