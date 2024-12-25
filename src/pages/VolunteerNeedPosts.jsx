@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import { CgLayoutList } from "react-icons/cg";
 import { RiLayoutGrid2Fill } from "react-icons/ri";
 import { useLoaderData } from "react-router-dom";
+import LoadingSpinner from "../components/Loading";
 import VolunteerNeedsPostsCard from "./../components/VolunteerNeedsPostsCard";
 import useAxios from "./../hooks/useAxios";
 import useDynamicTitle from "./../hooks/useDynamicTitle";
 const VolunteerNeedPosts = () => {
   useDynamicTitle("All Volunteer Needs Posts");
   const [controlLayout, setControlLayout] = useState("grid");
+  const [loading, setLoading] = useState(false);
   const axiosInstance = useAxios();
   const [posts, setPosts] = useState([]);
   const { count } = useLoaderData();
@@ -20,19 +22,28 @@ const VolunteerNeedPosts = () => {
   const array = Array.from({ length: pages }, (_, i) => i + 1);
   useEffect(() => {
     fetchPosts();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage, numberOfShow]);
   const fetchPosts = async (query = null) => {
-    if (query) {
+    try {
+      setLoading(true);
+      if (query) {
+        const { data } = await axiosInstance.get(
+          `/volunteers-posts?query=${query}`
+        );
+        setPosts(data?.data);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
       const { data } = await axiosInstance.get(
-        `/volunteers-posts?query=${query}`
+        `/volunteers-posts?currentPage=${currentPage}&size=${numberOfShow}`
       );
       setPosts(data?.data);
-      return;
+    } catch (error) {
+      // console.log(error);
+    } finally {
+      setLoading(false);
     }
-    const { data } = await axiosInstance.get(
-      `/volunteers-posts?currentPage=${currentPage}&size=${numberOfShow}`
-    );
-    setPosts(data?.data);
   };
 
   const handleSearch = (e) => {
@@ -44,12 +55,15 @@ const VolunteerNeedPosts = () => {
   const prevBtnHandle = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
   const nextBtnHandle = () => {
     if (array.length > currentPage) setCurrentPage(currentPage + 1);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  if (loading) return <LoadingSpinner />;
   return (
     <div className="mx-auto w-10/12 overflow-hidden">
       <div className="sm:flex items-center">

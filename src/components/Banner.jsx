@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import bgImg1 from "../assets/volunteer-couple-writing-clipboard.jpg";
 import bgImg2 from "../assets/volunteer1.avif";
 import bgImg3 from "../assets/volunteer2.avif";
-import bgImg4 from "../assets/volunteer4.avif";
+import bgImg4 from "../assets/volunteer4.jpg";
 
 // Import Swiper styles
 import "swiper/css";

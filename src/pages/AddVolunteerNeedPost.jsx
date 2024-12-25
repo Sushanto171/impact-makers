@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
@@ -14,6 +14,9 @@ const AddVolunteerNeedPost = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   useDynamicTitle("Add Volunteer Post");
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   const handleForm = async (e) => {
     e.preventDefault();

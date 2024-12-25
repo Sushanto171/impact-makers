@@ -17,7 +17,7 @@ const VolunteerNeedNow = () => {
   };
   return (
     <div className="pt-10">
-      <h2 className="text-2xl md:text-4xl text-gray-700 text-center flex justify-center gap-4 py-5">
+      <h2 className="text-2xl md:text-4xl text-gray-700 text-center flex justify-center gap-4 py-5 underline items-center">
         Volunteer Needs Now <SiOpensearch />
       </h2>
       <div className="">
@@ -55,11 +55,13 @@ const VolunteerNeedNow = () => {
             </div>
           ))}
         </div>
-        <Link to="/all-volunteer-need-post">
-          <button className="btn btn-sm w-44 btn-outline text-[#004a61]">
-            See All{" "}
-          </button>
-        </Link>
+        <div className="text-center">
+          <Link to="/all-volunteer-need-post">
+            <button className="btn btn-sm w-44 btn-outline text-[#004a61]">
+              See All{" "}
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

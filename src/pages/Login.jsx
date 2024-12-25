@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Link, Navigate, useLocation } from "react-router-dom";
 import LoginWithGoogle from "../components/LoginWithGoogle";
@@ -7,7 +8,9 @@ import useDynamicTitle from "../hooks/useDynamicTitle";
 const Login = () => {
   const { state } = useLocation();
   const { logInUser, user, setLoading } = useAuth();
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   useDynamicTitle("Log in");
 
   const handleLogin = async (e) => {

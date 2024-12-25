@@ -36,7 +36,7 @@ const MyVolunteerReqPost = () => {
       toast.success("Successfully requested cancel");
       fetchData(user?.email);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     } finally {
       setLoading(false);
     }

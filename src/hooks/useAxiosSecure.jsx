@@ -1,26 +1,24 @@
-import axios from "axios";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import useAuth from "./useAuth";
 import useAxios from "./useAxios";
-const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
-  withCredentials: true,
-});
+// const axiosSecure = axios.create({
+//   baseURL: "http://localhost:5000",
+//   withCredentials: true,
+// });
 let loggingOut = false;
 let interceptorsAdded = false;
 const useAxiosSecure = () => {
-  const { user } = useAuth();
+  const { signOutUser, setLoading } = useAuth();
+  const axiosSecure = useAxios();
 
   //  note: loggingOut, interceptorsAdded and using useEffect for prevent multiple interceptor rendering.
   useEffect(() => {
     setTimeout(() => {
       interceptorsAdded = loggingOut && false;
     }, 2000);
-  }, [user]);
+  }, [loggingOut]);
 
-  const { signOutUser, setLoading } = useAuth();
-  const axiosInstance = useAxios();
   axiosSecure.interceptors.response.use(
     (res) => {
       return res;
@@ -36,7 +34,7 @@ const useAxiosSecure = () => {
         if (res) {
           loggingOut = true;
         }
-        await axiosInstance.post("/log-out");
+        await axiosSecure.post("/log-out");
         setLoading(false);
         interceptorsAdded = true;
         return Promise.reject(error);

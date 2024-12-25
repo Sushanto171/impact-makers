@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import LoginWithGoogle from "../components/LoginWithGoogle";
@@ -9,6 +10,9 @@ const Register = () => {
     useAuth();
   const navigate = useNavigate();
   useDynamicTitle("Register");
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const registerHandle = async (e) => {
     e.preventDefault();
     const formData = e.target;

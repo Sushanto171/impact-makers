@@ -55,7 +55,7 @@ const AuthProvider = ({ children }) => {
         const email = currentUser.email;
         axiosInstance.post(`/jwt`, { email });
       }
-      console.log("currentUser-->", currentUser);
+      // console.log("currentUser-->", currentUser);
       setLoading(false);
     });
 

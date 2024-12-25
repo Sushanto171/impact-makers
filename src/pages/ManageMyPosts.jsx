@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -6,6 +7,9 @@ import MyVolunteerReqPost from "./../components/MyVolunteerReqPost";
 
 const ManageMyPosts = () => {
   const { tab } = useParams();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
     <div className="w-10/12 mx-auto overflow-y-auto">
       <Tabs defaultIndex={parseInt(tab, 10)}>

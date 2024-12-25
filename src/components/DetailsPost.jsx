@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaCalendarAlt,
   FaMapMarkerAlt,
@@ -16,6 +16,9 @@ const DetailsPost = () => {
   const item = useLoaderData();
   const { id } = useParams();
   const [post, setPost] = useState(item);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   const refresh = async () => {
     const { data } = await axiosInstance.get(`/volunteer-post/${id}`);
