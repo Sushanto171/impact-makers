@@ -1,11 +1,13 @@
 import React from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import useAxios from "../hooks/useAxios";
 
 const Modal = ({ post, refresh }) => {
   const { user } = useAuth();
   const axiosInstance = useAxios();
+  const navigate = useNavigate();
   const {
     deadline,
     location,
@@ -41,6 +43,7 @@ const Modal = ({ post, refresh }) => {
       toast.success("Volunteer Request Sent");
       document.getElementById("my_modal_4").close();
       refresh();
+      navigate("/manage-posts/1");
     } catch (error) {
       toast.error(error.message);
     }

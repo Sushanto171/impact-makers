@@ -29,6 +29,7 @@ const MyVolunteerReqPost = () => {
 
   const cancelHandler = async (id) => {
     try {
+      setLoading(true);
       const { data } = await axiosInstance.delete(
         `/volunteer-req-cancel/${id}`
       );
@@ -36,6 +37,8 @@ const MyVolunteerReqPost = () => {
       fetchData(user?.email);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 

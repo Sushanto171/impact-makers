@@ -6,7 +6,7 @@ import useDynamicTitle from "../hooks/useDynamicTitle";
 
 const Login = () => {
   const { state } = useLocation();
-  const { logInUser, user } = useAuth();
+  const { logInUser, user, setLoading } = useAuth();
 
   useDynamicTitle("Log in");
 
@@ -21,6 +21,8 @@ const Login = () => {
       toast.success("Log in success");
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
   if (user)

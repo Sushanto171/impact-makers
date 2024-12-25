@@ -48,7 +48,7 @@ export const routes = createBrowserRouter([
         ),
       },
       {
-        path: "/manage-posts",
+        path: "/manage-posts/:tab",
         element: (
           <PrivateRoute>
             <ManageMyPosts />

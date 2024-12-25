@@ -1,12 +1,14 @@
+import { useParams } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import MyVolunteerNeedPost from "../components/MyVolunteerNeedPost";
 import MyVolunteerReqPost from "./../components/MyVolunteerReqPost";
 
 const ManageMyPosts = () => {
+  const { tab } = useParams();
   return (
     <div className="w-10/12 mx-auto overflow-y-auto">
-      <Tabs>
+      <Tabs defaultIndex={parseInt(tab, 10)}>
         <div>
           <TabList>
             <Tab>

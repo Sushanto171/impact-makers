@@ -30,7 +30,7 @@ const AddVolunteerNeedPost = () => {
       const res = await axiosInstance.post(`/volunteers-posts`, data);
       toast.success("Post create success!");
       e.target.reset();
-      navigate("/manage-posts");
+      navigate("/manage-posts/0");
     } catch (error) {
       toast.error("Failed to create post");
     }

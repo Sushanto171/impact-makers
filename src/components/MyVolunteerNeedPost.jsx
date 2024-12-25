@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAuth from "./../hooks/useAuth";
 import useAxios from "./../hooks/useAxios";
 import useDynamicTitle from "./../hooks/useDynamicTitle";
@@ -11,6 +12,7 @@ const MyVolunteerNeedPost = () => {
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
   const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure();
   useDynamicTitle("My Volunteer Need Posts");
   useEffect(() => {
     fetchPosts();
@@ -19,7 +21,7 @@ const MyVolunteerNeedPost = () => {
   const fetchPosts = async () => {
     try {
       const email = user?.email;
-      const { data } = await axiosInstance.get(`/volunteers-posts/${email}`);
+      const { data } = await axiosSecure.get(`/volunteers-posts/${email}`);
       setMyPosts(data?.data);
     } catch (error) {
       // console.log(error);
@@ -29,13 +31,15 @@ const MyVolunteerNeedPost = () => {
   };
 
   const deleteHandler = async (id) => {
-    console.log(id);
     try {
+      setLoading(true);
       const { data } = await axiosInstance.delete(`/delete-post/${id}`);
       toast.success("Post deleted successfully!");
       fetchPosts();
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 

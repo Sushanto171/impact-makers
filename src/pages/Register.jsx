@@ -5,7 +5,8 @@ import useAuth from "../hooks/useAuth";
 import useDynamicTitle from "./../hooks/useDynamicTitle";
 
 const Register = () => {
-  const { createUser, updateUserProfile, user } = useAuth();
+  const { createUser, updateUserProfile, user, setLoading, loading } =
+    useAuth();
   const navigate = useNavigate();
   useDynamicTitle("Register");
   const registerHandle = async (e) => {
@@ -17,23 +18,24 @@ const Register = () => {
     const password = formData.password.value;
     // console.log(password);
     // password Validation
+    if (!/[A-Z]/.test(password)) {
+      return toast.error("Password at least one Uppercase");
+    }
     if (!/[a-z]/.test(password)) {
       return toast.error("Password at least one lowercase");
-    }
-    if (!/[A - Z]/.test(password)) {
-      return toast.error("Password at least one Uppercase");
     }
     if (password.length < 6) {
       return toast.error("Password must includes 6 character or longer");
     }
-    console.log({ displayName, email, photoURL, password });
     try {
       await createUser(email, password);
       await updateUserProfile(displayName, photoURL);
       toast.success("Register success!");
       navigate("/");
     } catch (error) {
-      toast.error(error.massage);
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
   if (user)
@@ -118,7 +120,7 @@ const Register = () => {
               type="submit"
               className="w-full px-6 py-3 font-medium hover:bg-[#004a61d8] tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#004A61] hover:text-[#ffdaa3] rounded-lg  focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
             >
-              Register
+              {loading ? "Register.." : "Register"}
             </button>
           </div>
         </form>

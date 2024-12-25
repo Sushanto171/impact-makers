@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 
 import { createContext, useEffect, useState } from "react";
+import useAxios from "../hooks/useAxios";
 import auth from "./../firebase/firebase.init";
 
 export const AuthContext = createContext(null);
@@ -18,6 +19,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const axiosInstance = useAxios();
 
   const logInWithGoogle = () => {
     setLoading(true);
@@ -49,8 +51,10 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      // if (currentUser) {
-      // }
+      if (currentUser) {
+        const email = currentUser.email;
+        axiosInstance.post(`/jwt`, { email });
+      }
       console.log("currentUser-->", currentUser);
       setLoading(false);
     });
@@ -68,6 +72,7 @@ const AuthProvider = ({ children }) => {
     updateUserProfile,
     logInUser,
     signOutUser,
+    setLoading,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

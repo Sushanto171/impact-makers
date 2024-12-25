@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import useAxios from "../hooks/useAxios";
 import LoadingSpinner from "./Loading";
 
 const Navbar = () => {
@@ -10,6 +11,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [theme, setTheme] = useState(true);
+  const axiosInstance = useAxios();
 
   useEffect(() => {
     if (theme) {
@@ -22,6 +24,7 @@ const Navbar = () => {
   const signOutHandle = async () => {
     try {
       await signOutUser();
+      await axiosInstance.post("/log-out");
       toast.success("Log out success!");
       navigate("/log-in");
     } catch (error) {
@@ -88,7 +91,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink className={` flex items-center`} to="/manage-posts">
+        <NavLink className={` flex items-center`} to="/manage-posts/0">
           {({ isActive }) => (
             <>
               <IoMdArrowDropright
