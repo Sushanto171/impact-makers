@@ -9,18 +9,16 @@ Currently, two official plugins are available:
 
 # ImpactMakers 🌟✨🌍
 
+---
+
 ## Project Overview 🌐🤝💡
 
 ImpactMakers is a platform designed to bridge the gap between organizations, communities, and individuals seeking to make a difference. Users can create volunteer posts, while others can sign up to contribute their time, skills, and passion to meaningful causes.
-
----
 
 ## Project Links 🔗
 
 - 🖥️ **Server Side Repository:** [GitHub - Server Side](https://github.com/programming-hero-web-course2/b10a11-server-side-Sushanto171)
 - 🌐 **Live Site:** [Live Site](https://login-signup-form-auth.web.app/)
-
----
 
 ## Key Features 🚀🛠️📊
 
@@ -31,8 +29,6 @@ ImpactMakers is a platform designed to bridge the gap between organizations, com
 - 🗓️ **Monthly Calendar View:** Effortlessly view upcoming events with a user-friendly calendar integration.
 - ✍️ **Blogs Section:** Stay informed and inspired with blogs highlighting success stories, volunteer tips, and community updates.
 
----
-
 ## Technologies Used 💻🖥️🔑
 
 - 💻 **Frontend:** React, TailwindCSS, DaisyUI, Axios, motion for an interactive and responsive user interface.
@@ -42,13 +38,9 @@ ImpactMakers is a platform designed to bridge the gap between organizations, com
 - 📆 **Calendar Integration:** FullCalendar to provide users with a clear view of upcoming events.
 - 🚀 **Deployment:** Vercel for server-side deployment to ensure fast and reliable hosting, with Firebase handling the client-side for efficient real-time data updates.
 
----
-
 ## Contribution 🤝💬✨
 
 🤝 **Contributions Welcome:** Submit an issue or pull request if you have ideas or feature suggestions. 💻📝📥
-
----
 
 ## Contact 📬📧📲
 
