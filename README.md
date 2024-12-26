@@ -9,11 +9,15 @@ Currently, two official plugins are available:
 
 # ImpactMakers 🌟✨🌍
 
----
-
 ## Project Overview 🌐🤝💡
 
-ImpactMakers is a platform designed to bridge the gap between organizations, communities, and individuals seeking to make a difference. Users can create volunteer posts, while others can sign up to contribute their time, skills, and passion to meaningful causes.
+**ImpactMakers** is a platform that aims to connect organizations, communities, and individuals who are passionate about making a difference. The platform allows users to:
+
+- **Create Volunteer Need Posts:** Organizations and individuals can post volunteer opportunities, providing detailed descriptions of the tasks and requirements.
+- **Update & Delete Posts:** Users have the ability to edit or remove their volunteer posts as needed.
+- **Sign Up as Volunteers:** Users can browse available posts and sign up to contribute their time, skills, and passion to causes they care about.
+
+The goal is to create a user-friendly platform that empowers people to make a meaningful impact by facilitating volunteer engagement and management.
 
 ## Project Links 🔗
 
