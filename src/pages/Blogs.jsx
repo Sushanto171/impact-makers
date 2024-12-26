@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { GrBlog } from "react-icons/gr";
 import BlogCard from "../components/BlogCard";
@@ -32,11 +33,16 @@ const Blogs = () => {
       <h2 className="text-3xl md:text-4xl text-gray-700 text-center flex justify-center gap-4 py-5 items-center underline">
         Our Blogs <GrBlog />
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4"
+      >
         {blogData.map((blog) => (
           <BlogCard key={blog._id} {...blog} />
         ))}
-      </div>
+      </motion.div>
       <div></div>
     </div>
   );

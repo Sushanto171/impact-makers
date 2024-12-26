@@ -45,7 +45,7 @@ const Blogs = () => {
           bounceDamping: 1,
           delay: 0.4,
         }}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 py-4"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 py-4"
       >
         {blogData.map((blog) => (
           <BlogCard key={blog._id} {...blog} />

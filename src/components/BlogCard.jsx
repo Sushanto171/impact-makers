@@ -2,7 +2,7 @@ import React from "react";
 
 const BlogCard = ({ title, author, date, content, tags, image }) => {
   return (
-    <div className="max-w-sm flex flex-col justify-between rounded-lg shadow-md overflow-hidden  hover:shadow-lg transition-shadow duration-300">
+    <div className="max-w-sm mt-4 flex flex-col justify-between rounded-lg shadow-md overflow-hidden hover:scale-105  hover:shadow-lg transition-all duration-300">
       <img src={image} alt={title} className="w-full h-48 object-cover" />
       <div className="p-4">
         <h2 className="text-xl font-semibold mb-2">{title}</h2>

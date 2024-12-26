@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../hooks/useAxiosSecure";
@@ -52,7 +53,11 @@ const MyVolunteerNeedPost = () => {
     );
 
   return (
-    <div>
+    <motion.div
+      initial={{ scale: 0.95, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeInOut" }}
+    >
       <div className="overflow-x-auto">
         <table className="table mt-10 border">
           {/* head */}
@@ -77,7 +82,7 @@ const MyVolunteerNeedPost = () => {
           </tbody>
         </table>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

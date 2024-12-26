@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -43,7 +44,12 @@ const AddVolunteerNeedPost = () => {
       <h3 className="text-2xl md:text-4xl flex gap-4 text-center">
         Add Volunteer Need Post <SiLibreofficewriter />
       </h3>
-      <div className="w-full max-w-lg mx-auto mt-10">
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
+        className="w-full max-w-lg mx-auto mt-10"
+      >
         <form onSubmit={handleForm}>
           <div className="bg-base-200 w-full p-10 sm:grid grid-cols-2 gap-4 rounded-md shadow">
             <label className="form-control w-full max-w-xs">
@@ -171,7 +177,7 @@ const AddVolunteerNeedPost = () => {
             </div>
           </div>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 };

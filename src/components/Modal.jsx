@@ -212,7 +212,7 @@ const Modal = ({ post, refresh }) => {
                     type="text"
                     readOnly
                     defaultValue={deadline}
-                    name="organizer_name"
+                    name="deadline"
                     placeholder="Name"
                     className="input input-bordered w-full max-w-xs"
                   />

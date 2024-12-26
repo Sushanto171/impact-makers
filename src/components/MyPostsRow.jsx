@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
@@ -12,6 +12,9 @@ const MyPostsRow = ({ post, i, deleteHandler }) => {
     deadline,
     _id,
   } = post;
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const deleteWaring = (id) => {
     toast((t) => (
       <div>

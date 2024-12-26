@@ -47,7 +47,18 @@ const EventCalendar = () => {
         }}
         className="md:grid grid-cols-4 mt-10 gap-8"
       >
-        <div className="col-span-2 bg-base-200 rounded-md p-2">
+        <motion.div
+          initial={{ x: -50, opacity: 0 }}
+          viewport={{ once: true, amount: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{
+            duration: 0.8,
+            ease: "easeInOut",
+            bounceDamping: 1,
+            delay: 0.4,
+          }}
+          className="col-span-2 bg-base-200 rounded-md p-2"
+        >
           <h3 className="text-2xl font-semibold opacity-70">
             # Our Upcoming Events Lists
           </h3>
@@ -68,13 +79,25 @@ const EventCalendar = () => {
                     <p>Location: {event.location}</p>
                     <p>Organizer: {event.organizer}</p>
                     <p>Description: {event.description}</p>
+                    <button className="btn w-full btn-outline my-2">Get</button>
                   </div>
                 </div>
               ))}
             </div>
           </ul>
-        </div>
-        <div className="calendar-container mt-5 sm:mt-0 text-xs col-span-2 overflow-x-auto bg-base-200 p-2 rounded-md">
+        </motion.div>
+        <motion.div
+          initial={{ x: 50, opacity: 0 }}
+          viewport={{ once: true, amount: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{
+            duration: 0.8,
+            ease: "easeInOut",
+            bounceDamping: 1,
+            delay: 0.4,
+          }}
+          className="calendar-container mt-5 sm:mt-0 text-xs col-span-2 overflow-x-auto bg-base-200 p-2 rounded-md"
+        >
           <FullCalendar
             plugins={[dayGridPlugin]}
             initialView="dayGridMonth"
@@ -86,7 +109,7 @@ const EventCalendar = () => {
             }}
             height="auto"
           />
-        </div>
+        </motion.div>
       </motion.div>
     </div>
   );

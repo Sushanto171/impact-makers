@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
@@ -15,7 +16,9 @@ const MyVolunteerReqPost = () => {
     const email = user?.email;
     fetchData(email);
   }, [user]);
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const fetchData = async (email) => {
     try {
       const { data } = await axiosSecure.get(`/volunteer-request/${email}`);
@@ -45,7 +48,11 @@ const MyVolunteerReqPost = () => {
   if (myReq.length === 0)
     return <h3 className="text-lg mt-10">You haven't request yet..</h3>;
   return (
-    <div>
+    <motion.div
+      initial={{ scale: 0.95, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeInOut" }}
+    >
       <div className="overflow-x-auto">
         <table className="table mt-10 border">
           {/* head */}
@@ -70,7 +77,7 @@ const MyVolunteerReqPost = () => {
           </tbody>
         </table>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

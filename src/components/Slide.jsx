@@ -15,7 +15,7 @@ const Slide = ({ img, text, id, isActive }) => {
       style={{ backgroundImage: `url(${img})` }}
     >
       <div className="h-full w-full bg-black/50">
-        <motion.div
+        <div
           initial={{ opacity: 0, y: 50 }}
           animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{
@@ -53,7 +53,7 @@ const Slide = ({ img, text, id, isActive }) => {
           </motion.p>
 
           <div className="flex justify-center mt-8">
-            <motion.button
+            <button
               initial={{ opacity: 0, y: 50 }}
               animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{
@@ -66,9 +66,9 @@ const Slide = ({ img, text, id, isActive }) => {
             >
               Get Started
               <IoIosArrowRoundForward size={30} />
-            </motion.button>
+            </button>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

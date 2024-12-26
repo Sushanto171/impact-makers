@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import LoginWithGoogle from "../components/LoginWithGoogle";
 import useAuth from "../hooks/useAuth";
 import useDynamicTitle from "../hooks/useDynamicTitle";
@@ -10,6 +10,7 @@ const Login = () => {
   const { state } = useLocation();
   const { logInUser, user, setLoading } = useAuth();
   const [showPass, setShowPass] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -24,6 +25,7 @@ const Login = () => {
     try {
       await logInUser(email, password);
       toast.success("Log in success");
+      navigate(state?.location ? state?.location : "/");
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -36,6 +38,7 @@ const Login = () => {
         <Navigate to="/" />
       </>
     );
+  console.log(state?.location);
   return (
     <div className="flex bg-base-100 w-10/12 mx-auto justify-center items-center min-h-[calc(100vh-100px)] ">
       <div className="max-w-sm mx-auto w-full bg-base-200 sm:max-w-md p-10 rounded-box shadow">

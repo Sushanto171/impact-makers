@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import {
   FaCalendarAlt,
@@ -42,7 +43,12 @@ const DetailsPost = () => {
   };
   if (loading) return <LoadingSpinner />;
   return (
-    <div className="card w-10/12 mx-auto bg-base-100 shadow-xl border border-gray-200 hover:border-[#004a61] transition duration-300">
+    <motion.div
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeInOut" }}
+      className="card w-10/12 mx-auto bg-base-100 shadow-xl border border-gray-200 hover:border-[#004a61] transition duration-300"
+    >
       <figure>
         <img
           src={post.thumbnail}
@@ -87,7 +93,7 @@ const DetailsPost = () => {
           <Modal post={post} refresh={refresh} />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

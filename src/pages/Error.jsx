@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { useNavigate, useRouteError } from "react-router-dom";
@@ -12,7 +13,12 @@ const Error = () => {
   return (
     <div className="flex items-center flex-col justify-center h-screen bg-gray-100">
       <div className="w-64 h-64 md:w-[100vh] md:h-[100vh] rounded-lg overflow-hidden relative">
-        <div className="absolute flex flex-col justify-center items-center w-full h-full z-10 text-center">
+        <motion.div
+          initial={{ scale: 0.5, opacity: 0, y: 50 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="absolute flex flex-col justify-center items-center w-full h-full z-10 text-center"
+        >
           <h3 className="text-2xl md:text-4xl text-error leading-relaxed font-semibold">
             Page not Found!
           </h3>
@@ -25,7 +31,7 @@ const Error = () => {
           >
             Go Back <IoIosArrowRoundForward size={30} />
           </button>
-        </div>
+        </motion.div>
         <Lottie animationData={animationData} loop={true} />
       </div>
     </div>

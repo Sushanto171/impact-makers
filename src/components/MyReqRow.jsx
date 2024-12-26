@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import useAxios from "../hooks/useAxios";
@@ -16,7 +16,9 @@ const MyReqRow = ({ post, i, cancelHandler }) => {
     deadline,
     _id,
   } = post;
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const cancelWaring = (id) => {
     toast((t) => (
       <div>
