@@ -5,6 +5,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAuth from "./../hooks/useAuth";
 import useAxios from "./../hooks/useAxios";
 import useDynamicTitle from "./../hooks/useDynamicTitle";
+import Empty from "./Empty";
 import LoadingSpinner from "./Loading";
 import MyPostsRow from "./MyPostsRow";
 
@@ -47,9 +48,12 @@ const MyVolunteerNeedPost = () => {
   if (loading) return <LoadingSpinner />;
   if (myPosts.length === 0)
     return (
-      <h3 className="text-lg mt-10">
-        You haven't created a volunteer post yet..
-      </h3>
+      <>
+        <h3 className="text-lg mt-10">
+          You haven't created a volunteer post yet..
+        </h3>
+        <Empty />
+      </>
     );
 
   return (

@@ -4,6 +4,7 @@ import VolunteerNeedNow from "../components/VolunteerNeedNow";
 
 import Blogs from "../components/Blogs";
 import EventCalendar from "../components/EventCalendar";
+import RealTime from "../components/RealTime";
 import useDynamicTitle from "./../hooks/useDynamicTitle";
 const Home = () => {
   useEffect(() => {
@@ -18,6 +19,7 @@ const Home = () => {
       </div>
       <EventCalendar />
       <Blogs />
+      <RealTime />
     </div>
   );
 };

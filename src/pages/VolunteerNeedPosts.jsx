@@ -73,7 +73,7 @@ const VolunteerNeedPosts = () => {
             initial={{ width: "30%", opacity: 0, x: 60 }}
             animate={{ width: "100%", opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: "easeInOut" }}
-            className="input hover:shadow-lg overflow-hidden max-w-lg pr-0 input-bordered justify-between flex rounded-full items-center gap-2  py-1"
+            className="input hover:shadow-lg relative overflow-hidden max-w-lg pr-0 input-bordered justify-between flex rounded-full items-center gap-2  py-1"
           >
             <input
               onBlur={handleSearch}
@@ -82,7 +82,7 @@ const VolunteerNeedPosts = () => {
             />
             <button
               type="button"
-              className="w-16 h-20 btn btn-ghost text-white justify-between font-bold hover:bg-gray-800 bg-gray-700 flex  items-center"
+              className="w-16 h-20 btn absolute right-0 btn-ghost text-white justify-between font-bold hover:bg-gray-800 bg-gray-700 flex  items-center"
             >
               <CiSearch size={20} />
             </button>

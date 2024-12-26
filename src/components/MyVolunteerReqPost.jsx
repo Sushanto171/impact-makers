@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import useDynamicTitle from "./../hooks/useDynamicTitle";
+import Empty from "./Empty";
 import LoadingSpinner from "./Loading";
 import MyReqRow from "./MyReqRow";
 const MyVolunteerReqPost = () => {
@@ -46,7 +47,12 @@ const MyVolunteerReqPost = () => {
   useDynamicTitle("My Volunteer Request Post");
   if (loading) return <LoadingSpinner />;
   if (myReq.length === 0)
-    return <h3 className="text-lg mt-10">You haven't request yet..</h3>;
+    return (
+      <>
+        <h3 className="text-lg mt-10">You haven't request yet..</h3>;
+        <Empty />
+      </>
+    );
   return (
     <motion.div
       initial={{ scale: 0.95, opacity: 0 }}

@@ -15,7 +15,7 @@ const EventCalendar = () => {
       const { data } = await axiosInstance.get("/events");
       setEvents(data?.data);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
