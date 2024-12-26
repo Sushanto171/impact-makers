@@ -1,7 +1,12 @@
+import Lottie from "lottie-react";
+import animationData from "../../public/lottie/loading.json";
 const LoadingSpinner = ({}) => {
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh)]">
-      <svg
+      <div className="mb-60 h-16 w-16">
+        <Lottie animationData={animationData} loop={true} />
+      </div>
+      {/* <svg
         width="35"
         height="35"
         viewBox="0 0 24 24"
@@ -66,7 +71,7 @@ const LoadingSpinner = ({}) => {
             repeatCount="indefinite"
           />
         </g>
-      </svg>
+      </svg> */}
     </div>
   );
 };

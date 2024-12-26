@@ -12,6 +12,21 @@ const Navbar = () => {
   const { user } = useAuth();
   const [theme, setTheme] = useState(true);
   const axiosInstance = useAxios();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (theme) {
@@ -121,7 +136,11 @@ const Navbar = () => {
   );
   if (loading) return <LoadingSpinner />;
   return (
-    <nav className="sticky z-50 top-0 navbar justify-between text-[#ffdaa3]  bg-[#004a61] py-5 shadow-sm px:5  sm:px-10 md:px-14">
+    <nav
+      className={`sticky z-50 top-0 navbar justify-between text-[#ffdaa3] ${
+        isScrolled ? "backdrop-blur-md bg-black/40" : "bg-[#004a61]"
+      }   py-5 shadow-sm px:5  sm:px-10 md:px-14`}
+    >
       <div className="">
         <Link to={"/"} className="btn btn-ghost text-xl font-bold">
           Impact Makers

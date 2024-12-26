@@ -18,6 +18,7 @@ export const routes = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+
     errorElement: <Error />,
     children: [
       {
@@ -76,12 +77,6 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/post-details/:id",
-        loader: async ({ params }) => {
-          const { data } = await axiosInstance.get(
-            `/volunteer-post/${params.id}`
-          );
-          return data.data;
-        },
         element: (
           <PrivateRoute>
             <DetailsPost />

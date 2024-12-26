@@ -19,7 +19,7 @@ const Slide = ({ img, text, id, isActive }) => {
           initial={{ opacity: 0, y: 50 }}
           animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{
-            duration: 0.8,
+            duration: 1,
             ease: "easeInOut",
             bounce: 0.5,
           }}
@@ -29,11 +29,12 @@ const Slide = ({ img, text, id, isActive }) => {
             initial={{ opacity: 0, y: 50 }}
             animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{
-              duration: 0.8,
+              duration: 1.5,
               ease: "easeInOut",
               delay: 0.2,
             }}
             className="text-xl font-bold leading-relaxed tracking-wide md:text-4xl text-white text-center"
+            style={{ textShadow: "0px 3px 5px black" }}
           >
             {text}..
           </motion.h1>
@@ -42,7 +43,7 @@ const Slide = ({ img, text, id, isActive }) => {
             initial={{ opacity: 0, y: 50 }}
             animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{
-              duration: 0.8,
+              duration: 1.3,
               ease: "easeInOut",
               delay: 0.4,
             }}
@@ -56,7 +57,7 @@ const Slide = ({ img, text, id, isActive }) => {
               initial={{ opacity: 0, y: 50 }}
               animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{
-                duration: 0.8,
+                duration: 1,
                 ease: "easeInOut",
                 delay: 0.6,
               }}

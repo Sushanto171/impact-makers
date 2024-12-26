@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
-import useAxios from "../hooks/useAxios";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 import useDynamicTitle from "./../hooks/useDynamicTitle";
 import LoadingSpinner from "./Loading";
 import MyReqRow from "./MyReqRow";
 const MyVolunteerReqPost = () => {
   const { user } = useAuth();
-  const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure();
   const [loading, setLoading] = useState(true);
   const [myReq, setMyReq] = useState([]);
 
@@ -18,7 +18,7 @@ const MyVolunteerReqPost = () => {
 
   const fetchData = async (email) => {
     try {
-      const { data } = await axiosInstance.get(`/volunteer-request/${email}`);
+      const { data } = await axiosSecure.get(`/volunteer-request/${email}`);
       setMyReq(data?.data);
     } catch (error) {
       // console.log(error);
@@ -30,9 +30,7 @@ const MyVolunteerReqPost = () => {
   const cancelHandler = async (id) => {
     try {
       setLoading(true);
-      const { data } = await axiosInstance.delete(
-        `/volunteer-req-cancel/${id}`
-      );
+      const { data } = await axiosSecure.delete(`/volunteer-req-cancel/${id}`);
       toast.success("Successfully requested cancel");
       fetchData(user?.email);
     } catch (error) {

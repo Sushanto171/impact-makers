@@ -7,23 +7,40 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import { MdOutlineCategory } from "react-icons/md";
-import { useLoaderData, useParams } from "react-router-dom";
-import useAxios from "../hooks/useAxios";
+import { useParams } from "react-router-dom";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import LoadingSpinner from "./Loading";
 import Modal from "./Modal";
 
 const DetailsPost = () => {
-  const axiosInstance = useAxios();
-  const item = useLoaderData();
+  const axiosSecure = useAxiosSecure();
+  const [loading, setLoading] = useState(true);
+
   const { id } = useParams();
-  const [post, setPost] = useState(item);
+  const [post, setPost] = useState({});
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  useEffect(() => {
+    fetchPost();
+  }, []);
+
+  const fetchPost = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axiosSecure.get(`/volunteer-post/${id}`);
+      setPost(data.data);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
   const refresh = async () => {
-    const { data } = await axiosInstance.get(`/volunteer-post/${id}`);
+    const { data } = await axiosSecure.get(`/volunteer-post/${id}`);
     setPost(data.data);
   };
+  if (loading) return <LoadingSpinner />;
   return (
     <div className="card w-10/12 mx-auto bg-base-100 shadow-xl border border-gray-200 hover:border-[#004a61] transition duration-300">
       <figure>

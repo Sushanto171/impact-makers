@@ -1,16 +1,19 @@
+import axios from "axios";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 import useAxios from "./useAxios";
-// const axiosSecure = axios.create({
-//   baseURL: "http://localhost:5000",
-//   withCredentials: true,
-// });
+const axiosSecure = axios.create({
+  baseURL: "https://impact-makers-server.vercel.app",
+  withCredentials: true,
+});
 let loggingOut = false;
 let interceptorsAdded = false;
 const useAxiosSecure = () => {
   const { signOutUser, setLoading } = useAuth();
-  const axiosSecure = useAxios();
+  const axiosInstance = useAxios();
+  const navigate = useNavigate();
 
   //  note: loggingOut, interceptorsAdded and using useEffect for prevent multiple interceptor rendering.
   useEffect(() => {
@@ -34,7 +37,7 @@ const useAxiosSecure = () => {
         if (res) {
           loggingOut = true;
         }
-        await axiosSecure.post("/log-out");
+        await axiosInstance.post("/log-out");
         setLoading(false);
         interceptorsAdded = true;
         return Promise.reject(error);

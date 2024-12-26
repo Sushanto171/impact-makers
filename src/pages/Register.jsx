@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import LoginWithGoogle from "../components/LoginWithGoogle";
 import useAuth from "../hooks/useAuth";
@@ -8,6 +9,7 @@ import useDynamicTitle from "./../hooks/useDynamicTitle";
 const Register = () => {
   const { createUser, updateUserProfile, user, setLoading, loading } =
     useAuth();
+  const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
   useDynamicTitle("Register");
   useEffect(() => {
@@ -65,6 +67,7 @@ const Register = () => {
             <input
               name="name"
               required
+              placeholder="name.."
               className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
               type="text"
             />
@@ -80,6 +83,7 @@ const Register = () => {
               id="LoggingEmailAddress"
               autoComplete="email"
               required
+              placeholder="password.."
               name="email"
               className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
               type="email"
@@ -95,29 +99,37 @@ const Register = () => {
             <input
               required
               name="photo"
+              placeholder="photoURL.."
               className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
               type="url"
             />
           </div>
 
-          <div className="mt-4">
-            <div className="flex justify-between">
+          <div className="mt-4 relative">
+            <div className="">
               <label
                 className="block mb-2 text-sm font-medium text-gray-600 "
                 htmlFor="loggingPassword"
               >
                 Password
               </label>
+              <button
+                onClick={() => setShowPass(!showPass)}
+                type="button"
+                className="absolute right-4 top-10 text-md"
+              >
+                {showPass ? <FaRegEyeSlash /> : <FaRegEye />}
+              </button>
+              <input
+                id="loggingPassword"
+                autoComplete="current-password"
+                placeholder="password.."
+                name="password"
+                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
+                type={showPass ? "text" : "password"}
+                required
+              />
             </div>
-
-            <input
-              id="loggingPassword"
-              required
-              autoComplete="current-password"
-              name="password"
-              className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
-              type="password"
-            />
           </div>
           <div className="mt-6">
             <button
