@@ -5,6 +5,7 @@ import Footer from "./../components/Footer";
 import Navbar from "./../components/Navbar";
 
 import { motion, useScroll, useSpring } from "framer-motion";
+import useAuth from "../hooks/useAuth";
 
 export function ScrollLinked() {
   const { scrollYProgress } = useScroll();
@@ -36,6 +37,7 @@ export function ScrollLinked() {
 
 const MainLayout = () => {
   const [showBtn, setShowBtn] = useState(false);
+  const { dark } = useAuth();
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 200) {
@@ -53,7 +55,7 @@ const MainLayout = () => {
   };
 
   return (
-    <div className="font-Poppins ">
+    <div className={`${dark ? "text-white" : "text-black"} font-Poppins`}>
       <ScrollLinked />
       {/* navbar */}
       <Navbar />

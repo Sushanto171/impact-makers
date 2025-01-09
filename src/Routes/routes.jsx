@@ -3,6 +3,7 @@ import DetailsPost from "../components/DetailsPost";
 import useAxios from "../hooks/useAxios";
 import MainLayout from "../layout/MainLayout";
 import AddVolunteerNeedPost from "../pages/AddVolunteerNeedPost";
+import BlogDetails from "../pages/BlogDetail";
 import Blogs from "../pages/Blogs";
 import Error from "../pages/Error";
 import Home from "../pages/Home";
@@ -36,6 +37,11 @@ export const routes = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs />,
+      },
+      {
+        path: "/blog/:id",
+        loader: ({ params }) => axiosInstance(`/blog/${params.id}`),
+        element: <BlogDetails />,
       },
       {
         path: "/all-volunteer-need-post",

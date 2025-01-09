@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import useAxios from "../hooks/useAxios";
 import LoadingSpinner from "./Loading";
@@ -9,8 +9,8 @@ import LoadingSpinner from "./Loading";
 const Navbar = () => {
   const { signOutUser, loading } = useAuth();
   const navigate = useNavigate();
-  const { user } = useAuth();
-  const [theme, setTheme] = useState(true);
+  const { user, dark, setDark } = useAuth();
+  const { pathname } = useLocation();
   const axiosInstance = useAxios();
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -28,13 +28,14 @@ const Navbar = () => {
     };
   }, []);
 
+  // theme
   useEffect(() => {
-    if (theme) {
-      document.documentElement.setAttribute("data-theme", "light");
+    if (dark) {
+      document.documentElement.setAttribute("data-theme", "dark");
       return;
     }
-    document.documentElement.setAttribute("data-theme", "dark");
-  }, [theme]);
+    document.documentElement.setAttribute("data-theme", "light");
+  }, [dark]);
 
   const signOutHandle = async () => {
     try {
@@ -50,7 +51,7 @@ const Navbar = () => {
   const toggle = (
     <>
       <input
-        onClick={() => setTheme(!theme)}
+        onClick={() => setDark(!dark)}
         type="checkbox"
         className="toggle"
         defaultChecked
@@ -137,85 +138,97 @@ const Navbar = () => {
   if (loading) return <LoadingSpinner />;
   return (
     <nav
-      className={`sticky z-50 top-0 navbar justify-between text-[#ffdaa3] ${
-        isScrolled ? "backdrop-blur-md bg-black/40" : "bg-[#004a61]"
-      }   py-5 shadow-sm px:5  sm:px-10 md:px-14`}
+      className={`sticky z-50 top-0 w-full text-[#ffdaa3] ${"bg-[#004a61]"}  `}
     >
-      <div className="">
-        <Link to={"/"} className="btn btn-ghost text-xl font-bold">
-          Impact Makers
-        </Link>
-      </div>
-      <ul className="hidden  md:flex items-center gap-6">
-        {links}
-        {user && (
-          <li className="dropdown dropdown-center">
-            <div tabIndex={0} role="button">
-              <div className="flex items-center">
-                <span>My Profile</span>
-                <span>
-                  <IoMdArrowDropdown />
-                </span>
-              </div>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-9 bg-[#004a61b9] rounded-md z-[1]  w-64 p-2 shadow"
-            >
-              {links2}
-            </ul>
-          </li>
-        )}
-      </ul>
-      <div className="dropdown dropdown-end">
-        <div className="flex-none flex items-center gap-2">
-          <span className="hidden sm:block">{toggle}</span>
-
-          {user ? (
-            <>
-              <button
-                onClick={signOutHandle}
-                className="btn btn-sm btn-outline text-[#ffdaa3]"
-              >
-                Log out
-              </button>
-              <div
-                title={user?.displayName}
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-10 rounded-full">
-                  <img
-                    referrerPolicy="no-referrer"
-                    alt=""
-                    src={user?.photoURL}
-                  />
+      <div className="navbar justify-between max-w-[1050px] mx-auto ">
+        <div className="">
+          <Link to={"/"} className="text-lg sm:text-xl font-bold ">
+            Impact Makers
+          </Link>
+        </div>
+        <ul className="hidden  md:flex items-center gap-6">
+          {links}
+          {user && (
+            <li className="dropdown dropdown-center">
+              <div tabIndex={0} role="button">
+                <div className="flex items-center">
+                  <span>My Profile</span>
+                  <span>
+                    <IoMdArrowDropdown />
+                  </span>
                 </div>
               </div>
               <ul
                 tabIndex={0}
-                className="menu md:hidden menu-sm dropdown-content mt-64 bg-[#004a61b9] rounded-box z-[1]  w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content mt-9 bg-[#004a61b9] rounded-md z-[1]  w-64 p-2 shadow"
               >
-                <span className="text-right">{toggle}</span>
-                {links}
                 {links2}
               </ul>
-            </>
-          ) : (
-            <>
-              <Link to="/register">
-                <button className="btn btn-sm btn-outline text-[#ffdaa3]">
-                  Register
-                </button>
-              </Link>
-              <Link to="/log-in">
-                <button className="btn btn-sm bg-[#ffdaa3] hover:bg-[#1F2937] hover:text-white">
-                  Login
-                </button>
-              </Link>
-            </>
+            </li>
           )}
+        </ul>
+        <div className="dropdown dropdown-end">
+          <div className="flex-none flex items-center gap-2">
+            <span className="hidden sm:block">{toggle}</span>
+
+            {user ? (
+              <>
+                <button
+                  onClick={signOutHandle}
+                  className="btn btn-sm btn-outline text-[#ffdaa3]"
+                >
+                  Log out
+                </button>
+                <div
+                  title={user?.displayName}
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div className="w-10 rounded-full">
+                    <img
+                      referrerPolicy="no-referrer"
+                      alt=""
+                      src={user?.photoURL}
+                    />
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu md:hidden menu-sm dropdown-content mt-64 bg-[#004a61b9] rounded-box z-[1]  w-52 p-2 shadow"
+                >
+                  <span className="text-right">{toggle}</span>
+                  {links}
+                  {links2}
+                </ul>
+              </>
+            ) : (
+              <>
+                <Link to="/register">
+                  <button
+                    className={`btn btn-sm ${
+                      pathname === "/register"
+                        ? "bg-[#ffdaa3] text-gray-700"
+                        : "text-[#ffdaa3]"
+                    } btn-outline `}
+                  >
+                    Register
+                  </button>
+                </Link>
+                <Link to="/log-in">
+                  <button
+                    className={`btn btn-sm ${
+                      pathname === "/log-in"
+                        ? "bg-[#ffdaa3] text-gray-700"
+                        : "text-[#ffdaa3]"
+                    } btn-outline `}
+                  >
+                    Login
+                  </button>
+                </Link>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </nav>

@@ -30,14 +30,14 @@ const Blogs = () => {
   if (loading) return <LoadingSpinner />;
   return (
     <div className="w-10/12 mx-auto  mb-10 bg-base-100 rounded-md">
-      <h2 className="text-3xl md:text-4xl text-gray-700 text-center flex justify-center gap-4 py-5 items-center underline">
+      <h2 className="text-3xl md:text-4xl text-center flex justify-center gap-4 py-5 items-center underline">
         Our Blogs <GrBlog />
       </h2>
       <motion.div
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4"
+        className=" p-4"
       >
         {blogData.map((blog) => (
           <BlogCard key={blog._id} {...blog} />

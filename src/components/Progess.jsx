@@ -50,7 +50,7 @@ const Progress = ({ data, i }) => {
               formatOptions={{ style: "decimal" }}
             />
           </motion.div>
-          <StatUpTrend>{inc}%</StatUpTrend>
+          <StatUpTrend className="bg-[#004A61]">{inc}%</StatUpTrend>
         </HStack>
         <StatHelpText>since last month</StatHelpText>
       </div>

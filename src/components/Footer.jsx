@@ -1,14 +1,11 @@
 import { GoArrowRight } from "react-icons/go";
 import { LuSendHorizontal } from "react-icons/lu";
-import handImage from "../assets/hand.png";
+import useAuth from "../hooks/useAuth";
 const Footer = () => {
+  const { dark } = useAuth();
   return (
-    <footer
-      className=" bg-black/90 text-neutral-content p-10 bg-no-repeat bg-contain sm:px-10 md:px-20 min-h-52 "
-      style={{ backgroundImage: `url(${handImage})` }}
-    >
-      <div className="footer">
-        <div></div>
+    <footer className="bg-black/90 text-white py-5 sm:p-10  sm:px-10 md:px-20  ">
+      <div className="px-10 sm:px-0 footer justify-between">
         <aside className="">
           <h2 className="text-2xl font-semibold text-[#ffdaa3]">
             Impact Makers
@@ -16,7 +13,7 @@ const Footer = () => {
           <h4 className="font-bold text-lg  flex items-center gap-2">
             About us <GoArrowRight className="" />
           </h4>
-          <p className="max-w-sm opacity-80 tracking-wide">
+          <p className="max-w-sm opacity-90 tracking-wide">
             Empowering connections between volunteers and communities,
             ImpactMakers is dedicated to creating meaningful change through
             collaboration and support.
@@ -76,10 +73,14 @@ const Footer = () => {
           </label>
         </nav>
       </div>
-      <div className="mt-10 text-center space-y-5 opacity-70">
-        <hr className="border border-base-200" />
+      <div className="mt-10 text-center space-y-5 opacity-70 ">
+        <hr
+          className={`border border-base-200 ${
+            dark ? "border-white" : "opacity-50"
+          }`}
+        />
         <aside>
-          <p className="text-sm">
+          <p className="text-sm px-5">
             Copyright © {new Date().getFullYear()} - All right reserved by
             Impact Makers
           </p>

@@ -14,12 +14,12 @@ const Home = () => {
   return (
     <div className="bg-base-100">
       <Banner />
-      <div id="all-post" className="w-10/12 mx-auto">
+      <div id="all-post" className="max-w-screen-lg mx-auto">
         <VolunteerNeedNow />
+        <EventCalendar />
+        <Blogs />
+        <RealTime />
       </div>
-      <EventCalendar />
-      <Blogs />
-      <RealTime />
     </div>
   );
 };

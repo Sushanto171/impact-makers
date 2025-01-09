@@ -54,7 +54,7 @@ const Login = () => {
           </div>
           <div className="mt-4">
             <label
-              className="block mb-2 text-sm font-medium text-gray-600 "
+              className="block mb-2 text-sm font-medium opacity-70 "
               htmlFor="LoggingEmailAddress"
             >
               Email Address
@@ -64,7 +64,7 @@ const Login = () => {
               autoComplete="email"
               placeholder="email.."
               name="email"
-              className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
+              className="block w-full px-4 py-2.5 text-gray-700 bg-white border rounded-lg focus:border-[#004A61] focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
               type="email"
               required
             />
@@ -73,7 +73,7 @@ const Login = () => {
           <div className="mt-4 relative">
             <div className="">
               <label
-                className="block mb-2 text-sm font-medium text-gray-600 "
+                className="block mb-2 text-sm font-medium opacity-70 "
                 htmlFor="loggingPassword"
               >
                 Password
@@ -90,7 +90,7 @@ const Login = () => {
                 autoComplete="current-password"
                 placeholder="password.."
                 name="password"
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
+                className="block w-full px-4 py-2.5 text-gray-700 bg-white border rounded-lg focus:border-[#004A61] focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
                 type={showPass ? "text" : "password"}
                 required
               />

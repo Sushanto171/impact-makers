@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import googleIcon from "../assets/google.gif";
 import useAuth from "./../hooks/useAuth";
 const LoginWithGoogle = ({ state }) => {
-  const { logInWithGoogle } = useAuth();
+  const { logInWithGoogle, dark } = useAuth();
   const navigate = useNavigate();
 
   const logInHandle = async () => {
@@ -20,7 +20,9 @@ const LoginWithGoogle = ({ state }) => {
       <div className="divider">OR</div>
       <button
         onClick={logInHandle}
-        className="btn w-full btn-ghost btn-outline  hover:text-[#ffdaa3]"
+        className={`btn w-full btn-ghost hover:bg-[#004A61] ${
+          dark ? "border-white text-white" : "text-[#004A61] border-[#004A61] "
+        } hover:text-[#ffdaa3]`}
       >
         <img className="w-5 rounded-full" src={googleIcon} alt="" />
         Log in with Google

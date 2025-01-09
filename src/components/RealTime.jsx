@@ -9,7 +9,7 @@ const RealTime = () => {
     { start: 0, inc: 0.2, end: 87, label: "Total Events" },
   ];
   return (
-    <div className="w-10/12 mx-auto">
+    <div className="">
       <motion.h2
         initial={{ y: 50, opacity: 0 }}
         viewport={{ once: true, amount: 0 }}
@@ -20,7 +20,7 @@ const RealTime = () => {
           bounceDamping: 1,
           delay: 0.2,
         }}
-        className="text-3xl md:text-4xl text-gray-700 text-center flex justify-center gap-4 py-5 items-center underline"
+        className="text-3xl md:text-4xl text-center flex justify-center gap-4 py-5 items-center underline"
       >
         Real Time Stat
       </motion.h2>

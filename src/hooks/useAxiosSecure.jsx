@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 import useAxios from "./useAxios";
 const axiosSecure = axios.create({
-  baseURL: "https://impact-makers-server.vercel.app",
+  baseURL: import.meta.env.VITE_BASE_URL,
   withCredentials: true,
 });
 let loggingOut = false;

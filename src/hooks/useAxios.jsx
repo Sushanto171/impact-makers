@@ -2,7 +2,7 @@ import axios from "axios";
 // https://impact-makers-server.vercel.app
 // http://localhost:5000
 const axiosInstance = axios.create({
-  baseURL: "https://impact-makers-server.vercel.app",
+  baseURL: import.meta.env.VITE_BASE_URL,
   withCredentials: true,
 });
 const useAxios = () => {

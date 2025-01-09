@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import bgImg1 from "../assets/volunteer-couple-writing-clipboard.jpg";
 import bgImg2 from "../assets/volunteer1.avif";
-import bgImg3 from "../assets/volunteer2.avif";
+import bgImg3 from "../assets/volunteer2.jpg";
+import bgImg1 from "../assets/volunteer3.jpg";
 import bgImg4 from "../assets/volunteer4.jpg";
 
 import "swiper/css";
@@ -34,7 +34,7 @@ const Banner = () => {
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 3000,
+          delay: 4000,
           disableOnInteraction: false,
         }}
         pagination={{
@@ -43,7 +43,7 @@ const Banner = () => {
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-        className="mySwiper"
+        className="mySwiper overflow-hidden"
       >
         {slidesData.map((slide, index) => (
           <SwiperSlide key={slide.id}>

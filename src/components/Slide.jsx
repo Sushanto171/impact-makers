@@ -11,10 +11,10 @@ const Slide = ({ img, text, id, isActive }) => {
   return (
     <div
       key={id}
-      className="h-[20rem] md:h-[30rem] w-full bg-cover bg-center bg-no-repeat"
+      className=" w-full bg-cover bg-top bg-no-repeat"
       style={{ backgroundImage: `url(${img})` }}
     >
-      <div className="h-full w-full bg-black/50">
+      <div className="h-full w-full bg-black/40">
         <div
           initial={{ opacity: 0, y: 50 }}
           animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
@@ -41,7 +41,7 @@ const Slide = ({ img, text, id, isActive }) => {
 
           <motion.p
             initial={{ opacity: 0, y: 50 }}
-            animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             transition={{
               duration: 1.3,
               ease: "easeInOut",
@@ -52,17 +52,10 @@ const Slide = ({ img, text, id, isActive }) => {
             Find or Become a Volunteer for Causes That Matter
           </motion.p>
 
-          <div className="flex justify-center mt-8">
+          <div className="flex justify-center mt-12">
             <button
-              initial={{ opacity: 0, y: 50 }}
-              animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{
-                duration: 1,
-                ease: "easeInOut",
-                delay: 0.6,
-              }}
               onClick={seeMoreHandler}
-              className="btn bg-[#ffdaa3] hover:bg-transparent hover:text-white"
+              className="btn border-0 text-white bg-[#004A61] hover:text-[#ffdaa3] hover:bg-[#004A61]"
             >
               Get Started
               <IoIosArrowRoundForward size={30} />
