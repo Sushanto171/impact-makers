@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { FcCalendar } from "react-icons/fc";
 import useAxios from "../hooks/useAxios";
 import OurUpcomingEvents from "./OurUpcomingEvents";
+import SectionTitle from "./SectionTitle";
 const EventCalendar = () => {
   const axiosInstance = useAxios();
   const [events, setEvents] = useState([]);
@@ -21,20 +22,7 @@ const EventCalendar = () => {
   };
   return (
     <div className="mx-auto  my-10 bg-base-100 rounded-md">
-      <motion.h2
-        initial={{ y: 50, opacity: 0 }}
-        viewport={{ once: true, amount: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{
-          duration: 0.8,
-          ease: "easeInOut",
-          bounceDamping: 1,
-          delay: 0.2,
-        }}
-        className="text-3xl md:text-4xl  text-center flex justify-center gap-4 py-5 items-center underline"
-      >
-        Event Calendar <FcCalendar />
-      </motion.h2>
+      <SectionTitle title={" Event Calendar"} icon={<FcCalendar />} />
       <motion.div
         initial={{ y: 50, opacity: 0 }}
         viewport={{ once: true, amount: 0 }}

@@ -4,6 +4,7 @@ import { SiOpensearch } from "react-icons/si";
 import { Link } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 import useAuth from "./../hooks/useAuth";
+import SectionTitle from "./SectionTitle";
 
 const VolunteerNeedNow = () => {
   const axiosInstance = useAxios();
@@ -20,20 +21,7 @@ const VolunteerNeedNow = () => {
   };
   return (
     <div className="pt-10">
-      <motion.h2
-        initial={{ y: 50, opacity: 0 }}
-        viewport={{ once: true, amount: 0.5 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{
-          duration: 0.8,
-          ease: "easeInOut",
-          bounceDamping: 1,
-          delay: 0.2,
-        }}
-        className="text-2xl md:text-4xl text-center flex justify-center gap-4 py-5 underline items-center"
-      >
-        Volunteer Needs Now <SiOpensearch />
-      </motion.h2>
+      <SectionTitle title={"Volunteer Needs Now "} icon={<SiOpensearch />} />
       <motion.div
         initial={{ y: 50, opacity: 0 }}
         viewport={{ once: true, amount: 0 }}

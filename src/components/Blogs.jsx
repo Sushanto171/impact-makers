@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import useAxios from "../hooks/useAxios";
 import BlogCard from "./BlogCard";
+import SectionTitle from "./SectionTitle";
 const Blogs = () => {
   const [blogData, setBlogData] = useState([]);
   const axiosInstance = useAxios();
@@ -23,20 +24,7 @@ const Blogs = () => {
   };
   return (
     <div className=" mx-auto  my-10 bg-base-100 rounded-md">
-      <motion.h2
-        initial={{ y: 50, opacity: 0 }}
-        viewport={{ once: true, amount: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{
-          duration: 0.8,
-          ease: "easeInOut",
-          bounceDamping: 1,
-          delay: 0.2,
-        }}
-        className="text-3xl md:text-4xl  text-center flex justify-center gap-4 py-5 items-center underline"
-      >
-        Our Blogs <GrBlog />
-      </motion.h2>
+      <SectionTitle title={"Our Blogs"} icon={<GrBlog />} />
       <motion.div
         initial={{ y: 50, opacity: 0 }}
         viewport={{ once: true, amount: 0 }}

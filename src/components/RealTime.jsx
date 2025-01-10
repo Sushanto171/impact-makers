@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import React from "react";
+import { TbAugmentedReality2 } from "react-icons/tb";
 import Progress from "./Progess";
+import SectionTitle from "./SectionTitle";
 
 const RealTime = () => {
   const datas = [
@@ -10,20 +12,7 @@ const RealTime = () => {
   ];
   return (
     <div className="">
-      <motion.h2
-        initial={{ y: 50, opacity: 0 }}
-        viewport={{ once: true, amount: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{
-          duration: 0.8,
-          ease: "easeInOut",
-          bounceDamping: 1,
-          delay: 0.2,
-        }}
-        className="text-3xl md:text-4xl text-center flex justify-center gap-4 py-5 items-center underline"
-      >
-        Real Time Stat
-      </motion.h2>
+      <SectionTitle title={" Real Time Stat"} icon={<TbAugmentedReality2 />} />
       <motion.div
         initial={{ y: 50, opacity: 0 }}
         viewport={{ once: true, amount: 0 }}

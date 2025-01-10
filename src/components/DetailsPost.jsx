@@ -10,6 +10,7 @@ import {
 import { MdOutlineCategory } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import Container from "./Container";
 import LoadingSpinner from "./Loading";
 import Modal from "./Modal";
 
@@ -43,57 +44,61 @@ const DetailsPost = () => {
   };
   if (loading) return <LoadingSpinner />;
   return (
-    <motion.div
-      initial={{ scale: 0.8, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeInOut" }}
-      className="card w-10/12 mx-auto bg-base-100 shadow-xl border border-gray-200 hover:border-[#004a61] transition duration-300"
-    >
-      <figure>
-        <img
-          src={post.thumbnail}
-          alt={post.post_title}
-          className="w-full h-40 object-cover rounded-t-lg"
-        />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title text-xl font-semibold">{post.post_title}</h2>
-        <p className="text-gray-700 text-sm">{post.description}</p>
+    <Container>
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
+        className="card bg-base-100 shadow-xl border border-gray-200 hover:border-[#004a61] transition duration-300"
+      >
+        <figure>
+          <img
+            src={post.thumbnail}
+            alt={post.post_title}
+            className="w-full h-40 object-cover rounded-t-lg"
+          />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title text-xl font-semibold">
+            {post.post_title}
+          </h2>
+          <p className="text-gray-700 text-sm">{post.description}</p>
 
-        <div className="flex items-center text-sm text-gray-500">
-          <FaCalendarAlt className="mr-2" />
-          <span>Deadline: {post.deadline}</span>
-        </div>
+          <div className="flex items-center text-sm text-gray-500">
+            <FaCalendarAlt className="mr-2" />
+            <span>Deadline: {post.deadline}</span>
+          </div>
 
-        <div className="flex items-center text-sm text-gray-500">
-          <FaMapMarkerAlt className="mr-2" />
-          <span>Location: {post.location}</span>
-        </div>
-        <div className="flex items-center text-sm text-gray-500">
-          <MdOutlineCategory className="mr-2" />
-          <span>Category: {post.category}</span>
-        </div>
+          <div className="flex items-center text-sm text-gray-500">
+            <FaMapMarkerAlt className="mr-2" />
+            <span>Location: {post.location}</span>
+          </div>
+          <div className="flex items-center text-sm text-gray-500">
+            <MdOutlineCategory className="mr-2" />
+            <span>Category: {post.category}</span>
+          </div>
 
-        <div className="flex items-center text-sm text-gray-500">
-          <FaUsers className="mr-2" />
-          <span>Volunteers Needed: {post.volunteers_needed}</span>
-        </div>
+          <div className="flex items-center text-sm text-gray-500">
+            <FaUsers className="mr-2" />
+            <span>Volunteers Needed: {post.volunteers_needed}</span>
+          </div>
 
-        <div className="flex items-center text-sm text-gray-500">
-          <FaUserAlt className="mr-2" />
-          <span>Organizer: {post.organizer_name}</span>
-        </div>
+          <div className="flex items-center text-sm text-gray-500">
+            <FaUserAlt className="mr-2" />
+            <span>Organizer: {post.organizer_name}</span>
+          </div>
 
-        <div className="flex items-center text-sm text-gray-500">
-          <FaRegEnvelope className="mr-2" />
-          <span>Contact: {post.organizer_email}</span>
-        </div>
+          <div className="flex items-center text-sm text-gray-500">
+            <FaRegEnvelope className="mr-2" />
+            <span>Contact: {post.organizer_email}</span>
+          </div>
 
-        <div className="card-actions justify-end">
-          <Modal post={post} refresh={refresh} />
+          <div className="card-actions justify-end">
+            <Modal post={post} refresh={refresh} />
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </Container>
   );
 };
 

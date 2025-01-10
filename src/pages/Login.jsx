@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Container from "../components/Container";
 import LoginAnimate from "../components/LoginAnimate";
 import LoginWithGoogle from "../components/LoginWithGoogle";
 import useAuth from "../hooks/useAuth";
@@ -33,87 +34,89 @@ const Login = () => {
       setLoading(false);
     }
   };
-  if (user)
-    return (
-      <>
-        <Navigate to="/" />
-      </>
-    );
+  // if (user)
+  //   return (
+  //     <>
+  //       <Navigate to="/" />
+  //     </>
+  //   );
   // console.log(state?.location);
   return (
-    <div className="flex bg-base-100 w-10/12 mx-auto justify-center items-center min-h-[calc(100vh-100px)] ">
-      <div className="hidden md:block ">
-        <div className="max-w-md">
-          <LoginAnimate />
+    <Container>
+      <div className="flex bg-base-100  justify-center items-center min-h-[calc(100vh-100px)] ">
+        <div className="hidden md:block ">
+          <div className="max-w-md">
+            <LoginAnimate />
+          </div>
         </div>
-      </div>
-      <div className="max-w-sm mx-auto w-full bg-base-200 sm:max-w-md p-10 rounded-box shadow">
-        <form onSubmit={handleLogin}>
-          <div className="text-center font-bold text-2xl mb-8">
-            <h3>Welcome Back</h3>
-          </div>
-          <div className="mt-4">
-            <label
-              className="block mb-2 text-sm font-medium opacity-70 "
-              htmlFor="LoggingEmailAddress"
-            >
-              Email Address
-            </label>
-            <input
-              id="LoggingEmailAddress"
-              autoComplete="email"
-              placeholder="email.."
-              name="email"
-              className="block w-full px-4 py-2.5 text-gray-700 bg-white border rounded-lg focus:border-[#004A61] focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
-              type="email"
-              required
-            />
-          </div>
-
-          <div className="mt-4 relative">
-            <div className="">
+        <div className="max-w-sm mx-auto w-full bg-base-200 sm:max-w-md p-10 rounded-box shadow">
+          <form onSubmit={handleLogin}>
+            <div className="text-center font-bold text-2xl mb-8">
+              <h3>Welcome Back</h3>
+            </div>
+            <div className="mt-4">
               <label
                 className="block mb-2 text-sm font-medium opacity-70 "
-                htmlFor="loggingPassword"
+                htmlFor="LoggingEmailAddress"
               >
-                Password
+                Email Address
               </label>
-              <button
-                onClick={() => setShowPass(!showPass)}
-                type="button"
-                className="absolute right-4 top-10 text-md"
-              >
-                {showPass ? <FaRegEyeSlash /> : <FaRegEye />}
-              </button>
               <input
-                id="loggingPassword"
-                autoComplete="current-password"
-                placeholder="password.."
-                name="password"
+                id="LoggingEmailAddress"
+                autoComplete="email"
+                placeholder="email.."
+                name="email"
                 className="block w-full px-4 py-2.5 text-gray-700 bg-white border rounded-lg focus:border-[#004A61] focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
-                type={showPass ? "text" : "password"}
+                type="email"
                 required
               />
             </div>
-          </div>
-          <div className="mt-6">
-            <button
-              type="submit"
-              className="w-full px-6 py-3 font-medium hover:bg-[#004a61d8] tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#004A61] hover:text-[#ffdaa3] rounded-lg  focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
-            >
-              Log In
-            </button>
-          </div>
-        </form>
-        <LoginWithGoogle state={state} />
-        <p className="text-xs sm:text-sm mt-5">
-          Don't have an account?{" "}
-          <Link to="/register" className="underline">
-            Register now
-          </Link>
-        </p>
+
+            <div className="mt-4 relative">
+              <div className="">
+                <label
+                  className="block mb-2 text-sm font-medium opacity-70 "
+                  htmlFor="loggingPassword"
+                >
+                  Password
+                </label>
+                <button
+                  onClick={() => setShowPass(!showPass)}
+                  type="button"
+                  className="absolute right-4 top-10 text-md"
+                >
+                  {showPass ? <FaRegEyeSlash /> : <FaRegEye />}
+                </button>
+                <input
+                  id="loggingPassword"
+                  autoComplete="current-password"
+                  placeholder="password.."
+                  name="password"
+                  className="block w-full px-4 py-2.5 text-gray-700 bg-white border rounded-lg focus:border-[#004A61] focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
+                  type={showPass ? "text" : "password"}
+                  required
+                />
+              </div>
+            </div>
+            <div className="mt-6">
+              <button
+                type="submit"
+                className="w-full px-6 py-3 font-medium hover:bg-[#004a61d8] tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#004A61] hover:text-[#ffdaa3] rounded-lg  focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
+              >
+                Log In
+              </button>
+            </div>
+          </form>
+          <LoginWithGoogle state={state} />
+          <p className="text-xs sm:text-sm mt-5">
+            Don't have an account?{" "}
+            <Link to="/register" className="underline">
+              Register now
+            </Link>
+          </p>
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
