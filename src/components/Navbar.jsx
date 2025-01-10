@@ -138,11 +138,11 @@ const Navbar = () => {
   if (loading) return <LoadingSpinner />;
   return (
     <nav
-      className={`sticky z-50 top-0 w-full text-[#ffdaa3] ${"bg-[#004a61]"}  `}
+      className={`sticky z-50 py-2 top-0 w-full text-[#ffdaa3] ${"bg-[#004a61]"}  `}
     >
       <div className="navbar justify-between max-w-[1050px] mx-auto ">
         <div className="">
-          <Link to={"/"} className="text-lg sm:text-xl font-bold ">
+          <Link to={"/"} className="text-lg sm:text-2xl font-bold ">
             Impact Makers
           </Link>
         </div>

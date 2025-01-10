@@ -66,9 +66,13 @@ const MainLayout = () => {
       >
         <button
           onClick={scrollToTop}
-          className="opacity-50 duration-200 hover:opacity-80"
+          className=" duration-200 hover:opacity-80"
         >
-          <IoIosArrowDropup className="hover:text-4xl text-3xl duration-200" />
+          <IoIosArrowDropup
+            className={`hover:text-4xl text-3xl duration-200 ${
+              dark ? "text-white" : "text-[#004a61]"
+            }`}
+          />
         </button>
       </div>
       <div className="min-h-[calc(100vh-310px)] pb-10 bg-base-100 pt-10">

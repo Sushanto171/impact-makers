@@ -17,7 +17,11 @@ const SectionTitle = ({ title, icon }) => {
           bounceDamping: 1,
           delay: 0.2,
         }}
-        className="text-2xl md:text-4xl text-center flex justify-center gap-4 py-5 underline items-center"
+        className={` ${
+          title === "Benefits of Volunteering"
+            ? "text-xl sm:text-2xl"
+            : "text-2xl"
+        } md:text-4xl text-center flex justify-center gap-4 py-5 underline items-center`}
       >
         {title}
         {icon}
