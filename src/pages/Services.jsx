@@ -29,14 +29,14 @@ const services = [
 const Services = () => {
   return (
     <Container>
-      <section className=" py-6">
+      <section className=" py-6 ">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Title */}
           <h2 className="text-2xl sm:text-3xl font-bold text-center opacity-80 mb-8">
             Our Services
           </h2>
           {/* Service Cards */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 ">
             {services.map((service) => (
               <div
                 key={service.id}

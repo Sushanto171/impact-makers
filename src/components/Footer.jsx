@@ -7,9 +7,9 @@ import Container from "./Container";
 const Footer = () => {
   const { dark } = useAuth();
   return (
-    <footer className="bg-black/90 text-white py-12 ">
+    <footer className="bg-black bg-opacity-90 text-white py-12 ">
       <Container>
-        <div className="px-10 sm:px-0 footer justify-between items-center">
+        <div className=" px-10 sm:px-0 footer justify-between items-center">
           <aside className="">
             <h2 className="text-2xl font-semibold mb-2 text-[#ffdaa3]">
               Impact Makers

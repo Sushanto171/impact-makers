@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { compareAsc, format } from "date-fns";
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
@@ -29,7 +29,10 @@ const AddVolunteerNeedPost = () => {
     }
     data.deadline = format(startDate, "P");
     data.volunteers_needed = parseInt(data.volunteers_needed);
+    const today = new Date().toLocaleDateString();
 
+    const result = compareAsc(today, data?.deadline);
+    if (result !== -1) return toast.error("Deadline must be future");
     // store data on the database
     try {
       const res = await axiosInstance.post(`/volunteers-posts`, data);
