@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import DetailsPost from "../components/DetailsPost";
 import useAxios from "../hooks/useAxios";
 import MainLayout from "../layout/MainLayout";
+import AboutUs from "../pages/AboutUs";
 import AddVolunteerNeedPost from "../pages/AddVolunteerNeedPost";
 import BlogDetails from "../pages/BlogDetail";
 import Blogs from "../pages/Blogs";
@@ -10,6 +11,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import ManageMyPosts from "../pages/ManageMyPosts";
 import Register from "../pages/Register";
+import Services from "../pages/Services";
 import VolunteerNeedPosts from "../pages/VolunteerNeedPosts";
 import UpdateModal from "./../components/UpdateModal";
 import PrivateRoute from "./PrivateRoute";
@@ -37,6 +39,14 @@ export const routes = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
+      },
+      {
+        path: "/service",
+        element: <Services />,
       },
       {
         path: "/blog/:id",

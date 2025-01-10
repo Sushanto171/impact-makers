@@ -73,7 +73,6 @@ const Navbar = () => {
           )}
         </NavLink>
       </li>
-
       <li>
         <NavLink
           className={` flex items-center`}
@@ -99,6 +98,33 @@ const Navbar = () => {
                 className={`${isActive ? "block" : "hidden"}`}
               />
               Blogs
+            </>
+          )}
+        </NavLink>
+      </li>
+
+      <li className={user ? "hidden" : ""}>
+        <NavLink to={"/about-us"} className={` flex items-center `}>
+          {({ isActive }) => (
+            <>
+              <IoMdArrowDropright
+                size={20}
+                className={`${isActive ? "block" : "hidden"}`}
+              />
+              About us
+            </>
+          )}
+        </NavLink>
+      </li>
+      <li className={user ? "hidden" : ""}>
+        <NavLink to={"/service"} className={` flex items-center`}>
+          {({ isActive }) => (
+            <>
+              <IoMdArrowDropright
+                size={20}
+                className={`${isActive ? "block" : "hidden"}`}
+              />
+              Service
             </>
           )}
         </NavLink>

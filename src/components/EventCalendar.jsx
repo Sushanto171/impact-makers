@@ -21,7 +21,7 @@ const EventCalendar = () => {
     }
   };
   return (
-    <div className="mx-auto  my-10 bg-base-100 rounded-md">
+    <div className="mx-auto  my-10 bg-base-100 rounded-md overflow-x-hidden">
       <SectionTitle title={" Event Calendar"} icon={<FcCalendar />} />
       <motion.div
         initial={{ y: 50, opacity: 0 }}

@@ -62,33 +62,33 @@ const DetailsPost = () => {
           <h2 className="card-title text-xl font-semibold">
             {post.post_title}
           </h2>
-          <p className="text-gray-700 text-sm">{post.description}</p>
+          <p className="opacity-80 text-sm">{post.description}</p>
 
-          <div className="flex items-center text-sm text-gray-500">
+          <div className="flex items-center text-sm opacity-70">
             <FaCalendarAlt className="mr-2" />
             <span>Deadline: {post.deadline}</span>
           </div>
 
-          <div className="flex items-center text-sm text-gray-500">
+          <div className="flex items-center text-sm opacity-70">
             <FaMapMarkerAlt className="mr-2" />
             <span>Location: {post.location}</span>
           </div>
-          <div className="flex items-center text-sm text-gray-500">
+          <div className="flex items-center text-sm opacity-70">
             <MdOutlineCategory className="mr-2" />
             <span>Category: {post.category}</span>
           </div>
 
-          <div className="flex items-center text-sm text-gray-500">
+          <div className="flex items-center text-sm opacity-70">
             <FaUsers className="mr-2" />
             <span>Volunteers Needed: {post.volunteers_needed}</span>
           </div>
 
-          <div className="flex items-center text-sm text-gray-500">
+          <div className="flex items-center text-sm opacity-70">
             <FaUserAlt className="mr-2" />
             <span>Organizer: {post.organizer_name}</span>
           </div>
 
-          <div className="flex items-center text-sm text-gray-500">
+          <div className="flex items-center text-sm opacity-70">
             <FaRegEnvelope className="mr-2" />
             <span>Contact: {post.organizer_email}</span>
           </div>

@@ -33,34 +33,40 @@ const VolunteerNeedNow = () => {
           delay: 0.4,
         }}
       >
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 my-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 my-10">
           {posts.map((post) => (
             <div
               key={post._id}
-              className="card bg-base-300 border border-transparent hover:border-white/50 shadow-md rounded-md overflow-hidden"
+              className="card  bg-base-300 border border-transparent hover:border-white/50 shadow-md rounded-md overflow-hidden"
             >
-              <div className="h-40 ">
+              <div className="h-48 sm:h40 ">
                 <img
                   src={post.thumbnail}
                   alt={post.title}
-                  className="w-full h-28 sm:h-40 object-cover "
+                  className="w-full h-48 sm:h-40 object-cover "
                 />
               </div>
-              <div className="p-4 flex flex-col justify-between h-full">
+              <div className="p-2 flex flex-col justify-between h-full">
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold opacity-70 mb-2 truncate">
+                  <h3 className="text-lg font-semibold opacity-70 mb-0.5 truncate">
                     {post.post_title}
                   </h3>
-                  <p className="text-sm text-gray-600">
-                    Category: {post.category}
+                  <p className="text-sm opacity-65 grid grid-cols-3 ">
+                    <span className="w-fit ">Category:</span>
+                    <span className=" text-left col-span-2">
+                      {post.category}
+                    </span>
                   </p>
-                  <p className="text-sm text-gray-600">
-                    Deadline: {post.deadline}
+                  <p className="text-sm opacity-65 grid grid-cols-3">
+                    <span>Deadline:</span>
+                    <span className="text-left col-span-2">
+                      {post.deadline}
+                    </span>
                   </p>
                 </div>
                 <div>
                   <Link to={`/post-details/${post._id}`}>
-                    <button className="mt-4 bg-[#004a61c9] text-white px-4 py-2 rounded-md hover:bg-[#004a61]">
+                    <button className="mt-2 bg-[#004a61c9] text-white px-4 py-2 rounded-md hover:bg-[#004a61]">
                       View Details
                     </button>
                   </Link>

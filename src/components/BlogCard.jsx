@@ -13,10 +13,10 @@ const BlogCard = ({ title, author, date, content, tags, image, _id }) => {
       <div className="p-4  w-full flex flex-col justify-between">
         <div>
           <h2 className="text-xl font-semibold mb-2">{title}</h2>
-          <p className="text-sm text-gray-500 mb-1">
+          <p className="text-sm opacity-80 mb-1">
             By {author} | {date}
           </p>
-          <p className="text-gray-700 text-sm line-clamp-3 mb-4">{content}</p>
+          <p className="opacity-65 text-sm line-clamp-3 mb-4">{content}</p>
         </div>
         <div>
           <div className="flex flex-wrap gap-2 mb-4">
