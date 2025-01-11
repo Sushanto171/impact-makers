@@ -1,11 +1,26 @@
+import { useState } from "react";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { IoLogoGithub } from "react-icons/io";
 import { LuSendHorizontal } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import useAxios from "./../hooks/useAxios";
 import Container from "./Container";
 const Footer = () => {
+  const axiosInstance = useAxios();
+  const [email, setEmail] = useState("");
   const { dark } = useAuth();
+
+  const handleSubs = async () => {
+    try {
+      const { data } = await axiosInstance.post("/send-email", {
+        email: email,
+      });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <footer className="bg-black bg-opacity-90 text-white py-12 ">
       <Container>
@@ -47,11 +62,15 @@ const Footer = () => {
             </h3>
             <label className="relative w-full rounded-full flex items-center gap-2 overflow-hidden pr-0 mt-5">
               <input
-                type="text"
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
                 className="input input-bordered text-black h-10 w-full"
                 placeholder="Email "
               />
-              <button className="bg-error absolute right-0 w-14 h-14 flex justify-center items-center">
+              <button
+                onClick={handleSubs}
+                className="bg-error absolute right-0 w-14 h-14 flex justify-center items-center"
+              >
                 <LuSendHorizontal size={20} />
               </button>
             </label>

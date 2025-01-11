@@ -52,11 +52,13 @@ const VolunteerNeedPosts = () => {
   };
 
   useEffect(() => {
-    fetchPosts(search);
     if (sort) {
       fetchPosts(null, sort);
     }
-  }, [search, sort]);
+  }, [sort]);
+  const handleSearch = () => {
+    fetchPosts(search);
+  };
 
   const prevBtnHandle = () => {
     if (currentPage > 1) {
@@ -82,13 +84,14 @@ const VolunteerNeedPosts = () => {
               className="input relative overflow-hidden max-w-lg pr-0 input-bordered border-[#004a61] justify-between flex rounded-full items-center gap-2  py-1"
             >
               <input
-                onBlur={(e) => setSearch(e.target.value)}
+                onChange={(e) => setSearch(e.target.value)}
                 type="text"
-                defaultValue={search}
+                value={search}
                 placeholder="Search by title"
               />
               <button
                 type="button"
+                onClick={handleSearch}
                 className="w-16 h-20 btn absolute right-0 btn-ghost text-white justify-between font-bold hover:bg-gray-800 bg-[#004a61] flex  items-center"
               >
                 <CiSearch size={20} />
@@ -102,6 +105,16 @@ const VolunteerNeedPosts = () => {
             transition={{ duration: 1, ease: "easeInOut" }}
             className="max-w-fit hidden items-center sm:flex justify-end gap-5  px-5 border-x-2 rounded-full border-[#004a61] bg-base-300"
           >
+            <button
+              onClick={() => [
+                setSearch(""),
+                setSort(""),
+                setControlLayout("grid"),
+              ]}
+              className="btn rounded-full btn-sm p-2 shadow"
+            >
+              Reset
+            </button>
             <div className="dropdown dropdown-bottom ">
               <div
                 tabIndex={0}
@@ -166,7 +179,7 @@ const VolunteerNeedPosts = () => {
               }   gap-4`}
             >
               {posts.length === 0 ? (
-                <div className="">
+                <div className="w-full col-span-4">
                   <h3 className="text-3xl ">No Posts Found...</h3>;
                 </div>
               ) : (
