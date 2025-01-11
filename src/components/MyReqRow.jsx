@@ -19,6 +19,7 @@ const MyReqRow = ({ post, i, cancelHandler }) => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
   const cancelWaring = (id) => {
     toast((t) => (
       <div>

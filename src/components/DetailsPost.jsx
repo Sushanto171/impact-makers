@@ -55,7 +55,7 @@ const DetailsPost = () => {
           <img
             src={post.thumbnail}
             alt={post.post_title}
-            className="w-full h-40 object-cover rounded-t-lg"
+            className="w-full max-h-96 object-cover rounded-t-lg"
           />
         </figure>
         <div className="card-body">

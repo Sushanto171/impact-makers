@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { IoLogoGithub } from "react-icons/io";
 import { LuSendHorizontal } from "react-icons/lu";
@@ -16,9 +17,10 @@ const Footer = () => {
       const { data } = await axiosInstance.post("/send-email", {
         email: email,
       });
-      console.log(data);
+      data && toast.success("Thank you for your subscribing");
+      setEmail("");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
   return (
@@ -63,6 +65,7 @@ const Footer = () => {
             <label className="relative w-full rounded-full flex items-center gap-2 overflow-hidden pr-0 mt-5">
               <input
                 type="email"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="input input-bordered text-black h-10 w-full"
                 placeholder="Email "

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { compareAsc, format } from "date-fns";
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
@@ -35,11 +36,19 @@ const AddVolunteerNeedPost = () => {
     if (result !== -1) return toast.error("Deadline must be future");
     // store data on the database
     try {
+      const formData = new FormData();
+      formData.append("image", data?.thumbnail);
+      const { data: imgbbData } = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API}`,
+        formData
+      );
+      data.thumbnail = imgbbData?.data?.display_url;
       const res = await axiosInstance.post(`/volunteers-posts`, data);
       toast.success("Post create success!");
       e.target.reset();
       navigate("/manage-posts/0");
     } catch (error) {
+      // console.log(error);
       toast.error("Failed to create post");
     }
   };
@@ -63,10 +72,10 @@ const AddVolunteerNeedPost = () => {
                 </div>
                 <input
                   required
-                  type="url"
+                  type="file"
                   placeholder="Thumbnail URL"
                   name="thumbnail"
-                  className="input input-bordered w-full max-w-xs"
+                  className="file-input file-input-bordered bg-transparent w-full max-w-xs"
                 />
               </label>
               <label className="form-control w-full max-w-xs">

@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const BlogCard = ({ title, author, date, content, tags, image, _id }) => {
-  console.log({ title, author, date, content, tags, image });
   return (
     <div className=" mt-4 sm:flex rounded-lg shadow-md overflow-hidden  hover:shadow-lg transition-all duration-300">
       <img
