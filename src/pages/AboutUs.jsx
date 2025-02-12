@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "../components/Container";
 
 const AboutUs = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
     <Container>
       <div className=" mx-auto py-4">
