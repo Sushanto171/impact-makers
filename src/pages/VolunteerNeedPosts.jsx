@@ -216,7 +216,11 @@ const VolunteerNeedPosts = () => {
                     </button>
                   ))}
                 </div>
-                <button onClick={nextBtnHandle} className="btn btn-sm">
+                <button
+                  disabled={count < numberOfShow}
+                  onClick={nextBtnHandle}
+                  className="btn btn-sm"
+                >
                   Next
                 </button>
                 <select
