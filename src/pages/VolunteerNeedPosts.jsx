@@ -110,6 +110,7 @@ const VolunteerNeedPosts = () => {
                 setSearch(""),
                 setSort(""),
                 setControlLayout("grid"),
+                fetchPosts(),
               ]}
               className="btn rounded-full btn-sm p-2 shadow"
             >
