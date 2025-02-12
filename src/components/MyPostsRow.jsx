@@ -52,7 +52,7 @@ const MyPostsRow = ({ post, i, deleteHandler }) => {
           </div>
         </div>
       </td>
-      <td>{description}</td>
+      <td>{description.slice(0, 50)}...</td>
       <td> {volunteers_needed}</td>
       <td>
         <div className="flex justify-between">

@@ -57,7 +57,7 @@ const MyReqRow = ({ post, i, cancelHandler }) => {
           </div>
         </div>
       </td>
-      <td>{description}</td>
+      <td>{description.slice(0, 50)}...</td>
       <td>
         <p>{organizer_name}</p>
         <p>{organizer_email}</p>

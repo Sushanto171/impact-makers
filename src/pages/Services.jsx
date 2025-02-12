@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaBullhorn, FaChartLine, FaHandsHelping } from "react-icons/fa";
 import Container from "../components/Container";
 
@@ -27,6 +27,9 @@ const services = [
 ];
 
 const Services = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
     <Container>
       <section className=" py-6 ">

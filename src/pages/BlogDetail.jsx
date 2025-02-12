@@ -54,9 +54,9 @@ const BlogDetails = () => {
 
           {/* Call to Action */}
           <div className="mt-6">
-            <button className="btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded shadow">
+            {/* <button className="btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded shadow">
               Read More
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

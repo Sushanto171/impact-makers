@@ -35,9 +35,9 @@ const OurUpcomingEvents = ({ events }) => {
                 <p>Location: {event.location}</p>
                 <p>Organizer: {event.organizer}</p>
                 <p>Description: {event.description}</p>
-                <button className="btn w-full text-xl hover:bg-[#004A61] hover:text-white text-black bg-white btn-outline my-2">
+                {/* <button className="btn w-full text-xl hover:bg-[#004A61] hover:text-white text-black bg-white btn-outline my-2">
                   Go
-                </button>
+                </button> */}
               </div>
             </div>
           ))}

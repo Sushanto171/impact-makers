@@ -103,7 +103,7 @@ const Navbar = () => {
         </NavLink>
       </li>
 
-      <li className={user ? "hidden" : ""}>
+      <li>
         <NavLink to={"/about-us"} className={` flex items-center `}>
           {({ isActive }) => (
             <>
